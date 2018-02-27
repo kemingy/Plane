@@ -3,22 +3,24 @@
 > **Plane** is a tool for shaping wood using muscle power to force the cutting blade over the wood surface.  
 > *from [Wikipedia](https://en.wikipedia.org/wiki/Plane_(tool))*
 
-![plane(tool)](https://upload.wikimedia.org/wikipedia/commons/e/e3/Kanna2.gif)
+![plane(tool) from wikipedia](https://upload.wikimedia.org/wikipedia/commons/e/e3/Kanna2.gif)
 
-This package is used for matching/extracting/removing specific parts from text, like URL, Email, telephone number and so on.
+This package is used for extracting or replacing specific parts from text, like URL, Email, telephone number and so on. Or just remove all unicode punctuations.
 
 ## Install
 
-### Use Pip cmd.
+Python **3.x** only.
+
+### pip
 
 ```python
-pip3 install plane
+pip install plane
 ```
 
 ### Install from source
 
 ```sh
-python3 setup.py install
+python setup.py install
 ```
 
 ## Usage
