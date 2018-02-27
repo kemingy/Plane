@@ -18,7 +18,7 @@ DEFAULT_REPLACER = ' '
 
 UNICODE_PUNCTUATION = dict(zip(PUNCTUATION, DEFAULT_REPLACER * len(PUNCTUATION)))
 
-def remove_punctuation(text, replacer=DEFAULT_REPLACER):
-    if replacer != DEFAULT_REPLACER:
-        return text.translate(dict(zip(PUNCTUATION, replacer * len(PUNCTUATION))))
+def remove_punctuation(text, repl=DEFAULT_REPLACER):
+    if repl != DEFAULT_REPLACER:
+        return text.translate(dict(zip(PUNCTUATION, repl * len(PUNCTUATION))))
     return text.translate(UNICODE_PUNCTUATION)

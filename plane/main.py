@@ -12,8 +12,10 @@ from .pattern import (
 
 PATTERNS = dict([p.name, p] for p in DEFAULT_PATTERNS)
 
-def add_new_pattern(name, regex, repl=''):
-    PATTERNS[name] = Regex(name, regex, repl)
+def build_new_regex(name, regex, repl=''):
+    regex = Regex(name, regex, repl)
+    PATTERNS[name] = regex
+    return regex
 
 def build_regex(patterns):
     if not isinstance(patterns, list):
