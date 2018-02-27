@@ -1,5 +1,7 @@
 # Plane
 
+[![Build Status](https://travis-ci.org/Momingcoder/Plane.svg?branch=master)](https://travis-ci.org/Momingcoder/Plane)
+
 > **Plane** is a tool for shaping wood using muscle power to force the cutting blade over the wood surface.  
 > *from [Wikipedia](https://en.wikipedia.org/wiki/Plane_(tool))*
 
@@ -29,9 +31,9 @@ python setup.py install
 
 `Regex` is a namedtuple with 3 items:
 
-* 'name'
-* 'pattern': Regular Expression
-* 'repl': replacement tag, this will replace matched regex when using `replace` function
+* `name`
+* `pattern`: Regular Expression
+* `repl`: replacement tag, this will replace matched regex when using `replace` function
 
 ```python
 # create new pattern
