@@ -68,6 +68,8 @@ replace(text, [EMAIL])
 
 `remove_punctuation` will replace all unicode punctuations to `' '` or something you send to this function as paramter `repl`.
 
+**Attention**: '+', '^', '$', '~' and some chars are not punctuation.
+
 ```python
 from plane import remove_punctuation
 
