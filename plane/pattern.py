@@ -47,10 +47,17 @@ TELEPHONE = Regex(
 SPACE = Regex(
     'Space',
     r'(\s+)',
-    '<Space>',
+    ' ',
+)
+
+HTML= Regex(
+    'HTML',
+    r'(?s)<script.*?>.*?</script>|<style.*?>.*?</style>|<.*?>',
+    ' ',
 )
 
 DEFAULT_PATTERNS = [
+    HTML,
     EMAIL,
     SPACE,
     TELEPHONE,

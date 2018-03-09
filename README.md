@@ -7,7 +7,7 @@
 
 ![plane(tool) from wikipedia](https://upload.wikimedia.org/wikipedia/commons/e/e3/Kanna2.gif)
 
-This package is used for extracting or replacing specific parts from text, like URL, Email, telephone number and so on. Or just remove all unicode punctuations.
+This package is used for extracting or replacing specific parts from text, like URL, Email, HTML tags, telephone numbers and so on. Or just remove all unicode punctuations.
 
 ## Install
 
@@ -43,10 +43,11 @@ custom_regex = build_new_regex('my_regex', r'(\d{4})', '<my-replacement-tag>')
 
 Default Regex:
 
-* RESTRICT_URL
-* EMAIL
-* TELEPHONE
-* SPACE
+* `RESTRICT_URL`: only ASCII
+* `EMAIL`: local-part@domain
+* `TELEPHONE`: like xxx-xxxx-xxxx
+* `SPACE`: ` `, `\t`, `\n`, `\r`, `\f`, `\v`
+* `HTML`: HTML tags, Script part and CSS part
 
 Use regex to `extract` or `replace`:
 
@@ -80,7 +81,8 @@ remove_punctuation(text)
 
 >>> 'Hello world '
 
+# replace punctuation with special string
 remove_punctuation(text, '<P>')
 
->>> 'Hello world<p>'
+>>> 'Hello world<P>'
 ```

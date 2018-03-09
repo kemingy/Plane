@@ -5,4 +5,5 @@ from .pattern import (
     EMAIL,
     TELEPHONE,
     SPACE,
+    HTML,
 )

@@ -1,4 +1,4 @@
-from plane import extract, replace, RESTRICT_URL, EMAIL, TELEPHONE, SPACE
+from plane import extract, replace, RESTRICT_URL, EMAIL, TELEPHONE, SPACE, HTML
 
 def assert_list(x, y):
     assert len(x) == len(y)
@@ -86,8 +86,8 @@ def test_space():
         ['\n        ', ' ', ' ', '\n        '],
     ]
     expect = [
-        'hello<Space>world!<Space>exciting!',
-        '<Space>One<Space>more<Space>time.<Space>'
+        'hello world! exciting!',
+        ' One more time. '
     ]
     assert_list(
         no_space,
@@ -97,3 +97,31 @@ def test_space():
         expect,
         [replace(t, SPACE) for t in text]
     )
+
+def test_html_and_space():
+    text = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="center">
+        <p id="danger">Don't do it!</p>
+    </div>
+</body>
+<style>
+    body {
+        margin: 0;
+        color: brown;
+    }
+</style>
+<script>
+    let m = Array();
+    consolo.log(m);
+</script>
+</html>
+        """
+    expect = """ Document Don't do it! """
+    assert replace(replace(text, HTML), SPACE) == expect
