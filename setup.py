@@ -9,16 +9,17 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='plane',
-    version='0.0.1',
+    version='0.0.2',
     description='A lib for text preprocessing',
     long_description=long_description,
     author='Keming Yang',
     author_email='kemingy94@gmail.com',
-    url='',
     license='MIT',
     classifiers=[
         'Topic :: Text Processing',
         'Programming Language :: Python :: 3.5',
     ],
     install_requires=[],
+    packages=find_packages(),
+    url='https://github.com/Momingcoder/Plane',
 )
