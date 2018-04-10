@@ -20,6 +20,7 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     install_requires=[],
-    packages=find_packages(),
+    python_requires='>=3',
+    packages=find_packages(exclude=['test']),
     url='https://github.com/Momingcoder/Plane',
 )

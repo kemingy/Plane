@@ -1,4 +1,13 @@
-from plane import extract, replace, RESTRICT_URL, EMAIL, TELEPHONE, SPACE, HTML
+from plane import extract, replace
+from plane.pattern import (
+    HTML,
+    EMAIL,
+    SPACE,
+    TELEPHONE,
+    RESTRICT_URL,
+    CHINESE,
+    CJK,
+)
 
 def assert_list(x, y):
     assert len(x) == len(y)
@@ -125,3 +134,15 @@ def test_html_and_space():
         """
     expect = """ Document Don't do it! """
     assert replace(replace(text, HTML), SPACE) == expect
+
+def test_cjk():
+    text = """
+Hello World!世界和平？〷〆
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+"""
+    expect_chinese = '世界和平'
+    expect_cjk = '世界和平？〷〆'
+    assert ''.join([m.value for m in extract(text, CHINESE)]) == expect_chinese
+    assert ''.join([m.value for m in extract(text, CJK)]) == expect_cjk
