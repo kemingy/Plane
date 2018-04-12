@@ -1,5 +1,5 @@
 from .punctuation import remove_punctuation
-from .main import replace, extract, build_new_regex
+from .main import replace, extract, segment, build_new_regex
 from .pattern import (
     HTML,
     EMAIL,
@@ -9,3 +9,5 @@ from .pattern import (
     CHINESE,
     CJK,
 )
+
+__version__ = '0.0.5'

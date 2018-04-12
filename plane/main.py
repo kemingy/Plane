@@ -40,3 +40,15 @@ def replace(text, patterns):
     result += text[start:]
 
     return result
+
+def segment(text):
+    pattern = r'[a-zA-Z0-9]+'
+    tokens = re.finditer(pattern, text)
+    result = []
+    start = 0
+    for t in tokens:
+        result.extend(list(text[start:t.start()]))
+        result.append(text[t.start():t.end()])
+        start = t.end()
+    result.extend(list(text[start:]))
+    return result

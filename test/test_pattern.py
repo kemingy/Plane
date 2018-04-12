@@ -137,12 +137,13 @@ def test_html_and_space():
 
 def test_cjk():
     text = """
-Hello World!世界和平？〷〆
+Hello World!世界和平？
 Beautiful is better than ugly.
 Explicit is better than implicit.
 Simple is better than complex.
+Speed = 3×10^8 ㎞/s.
 """
-    expect_chinese = '世界和平'
-    expect_cjk = '世界和平？〷〆'
+    expect_chinese = '世界和平？'
+    expect_cjk = '世界和平？㎞'
     assert ''.join([m.value for m in extract(text, CHINESE)]) == expect_chinese
     assert ''.join([m.value for m in extract(text, CJK)]) == expect_cjk

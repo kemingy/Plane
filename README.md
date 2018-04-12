@@ -48,8 +48,8 @@ Default Regex:
 * `TELEPHONE`: like xxx-xxxx-xxxx
 * `SPACE`: ` `, `\t`, `\n`, `\r`, `\f`, `\v`
 * `HTML`: HTML tags, Script part and CSS part
-* `CHINESE`: all Chinese characters (only Han, without punctuations)
-* `CJK`: all Chinese, Japanese, Korean(CJK) characters (with punctuations)
+* `CHINESE`: all Chinese characters (only Han and punctuations)
+* `CJK`: all Chinese, Japanese, Korean(CJK) characters and punctuations
 
 Use regex to `extract` or `replace`:
 
@@ -67,6 +67,16 @@ for e in emails:
 replace(text, [EMAIL])
 
 >>> '<Email> & <Email>'
+```
+
+### segment
+
+`segment` can be used to segment sentence, English and Numbers like 'PS4' will be keeped and others like Chinese '中文' will be split to single word format `['中', '文']`.
+
+```python
+from plane import segment
+segment('你看起来gaygay的。')
+>>> ['你', '看', '起', '来', 'gaygay', '的', '。']
 ```
 
 ### punctuation
