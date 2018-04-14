@@ -8,11 +8,13 @@ from .pattern import (
     Regex,
     Token,
     DEFAULT_PATTERNS,
+    ASCII_WORD,
 )
 
 PATTERNS = dict([p.name, p] for p in DEFAULT_PATTERNS)
 
 def build_new_regex(name, regex, repl=''):
+    name = name.replace(' ', '_')
     regex = Regex(name, regex, repl)
     PATTERNS[name] = regex
     return regex
@@ -41,14 +43,16 @@ def replace(text, patterns):
 
     return result
 
-def segment(text):
-    pattern = r'[a-zA-Z0-9]+'
-    tokens = re.finditer(pattern, text)
+def segment(text, patterns=ASCII_WORD):
+    regex = build_regex(patterns)
+    print(regex)
     result = []
     start = 0
-    for t in tokens:
-        result.extend(list(text[start:t.start()]))
+    for t in re.finditer(regex, text):
+        result.extend(
+            [char for char in list(text[start:t.start()])
+                if char != ' '])
         result.append(text[t.start():t.end()])
         start = t.end()
-    result.extend(list(text[start:]))
+    result.extend([char for char in list(text[start:]) if char != ' '])
     return result

@@ -5,6 +5,7 @@ from plane.pattern import (
     SPACE,
     TELEPHONE,
     RESTRICT_URL,
+    ASCII_WORD,
     CHINESE,
     CJK,
 )
@@ -135,7 +136,12 @@ def test_html_and_space():
     expect = """ Document Don't do it! """
     assert replace(replace(text, HTML), SPACE) == expect
 
-def test_cjk():
+def test_ascii_word():
+    text = "( ⊙ o ⊙ )What's that? It cost me $1000 to buy 0.1 bitcoin."
+    expect = ['o', "What's", 'that', 'It', 'cost', 'me', '$1000', 'to', 'buy', '0.1', 'bitcoin']
+    assert extract(text, ASCII_WORD)
+
+def test_Chinese_and_cjk():
     text = """
 Hello World!世界和平？
 Beautiful is better than ugly.

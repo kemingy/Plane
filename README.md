@@ -48,6 +48,7 @@ Default Regex:
 * `TELEPHONE`: like xxx-xxxx-xxxx
 * `SPACE`: ` `, `\t`, `\n`, `\r`, `\f`, `\v`
 * `HTML`: HTML tags, Script part and CSS part
+* `ASCII_WORD`: English word, numbers, `<tag>` and so on.
 * `CHINESE`: all Chinese characters (only Han and punctuations)
 * `CJK`: all Chinese, Japanese, Korean(CJK) characters and punctuations
 
@@ -75,8 +76,8 @@ replace(text, [EMAIL])
 
 ```python
 from plane import segment
-segment('你看起来gaygay的。')
->>> ['你', '看', '起', '来', 'gaygay', '的', '。']
+segment('你看起来gaygay的。<EOS>')
+>>> ['你', '看', '起', '来', 'gaygay', '的', '。', '<EOS>']
 ```
 
 ### punctuation

@@ -56,6 +56,12 @@ HTML= Regex(
     ' ',
 )
 
+ASCII_WORD = Regex(
+    'ASCII_word',
+    r'[<$#&]?[a-zA-Z0-9_.-]*\'?[a-zA-Z0-9]+[%>]?',
+    ' ',
+)
+
 CHINESE = Regex(
     'Chinese',
     r'[' + \
@@ -107,6 +113,7 @@ DEFAULT_PATTERNS = [
     SPACE,
     TELEPHONE,
     RESTRICT_URL,
+    ASCII_WORD,
     CHINESE,
     CJK,
 ]
