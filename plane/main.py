@@ -13,6 +13,8 @@ from .pattern import (
 
 PATTERNS = dict([p.name, p] for p in DEFAULT_PATTERNS)
 
+REGEX_CACHE = {}
+
 def build_new_regex(name, regex, repl=''):
     name = name.replace(' ', '_')
     regex = Regex(name, regex, repl)
@@ -23,11 +25,16 @@ def build_regex(patterns):
     if not isinstance(patterns, list):
         patterns = [patterns]
 
-    return '|'.join('(?P<%s>%s)' % (p.name, p.pattern) for p in patterns)
+    key = str(patterns)
+    if key in REGEX_CACHE:
+        return REGEX_CACHE[key]
+    value = re.compile('|'.join('(?P<%s>%s)' % (p.name, p.pattern) for p in patterns))
+    REGEX_CACHE[key] = value
+    return value
 
 def extract(text, patterns):
     regex = build_regex(patterns)
-    for mo in re.finditer(regex, text):
+    for mo in regex.finditer(text):
         name = mo.lastgroup
         value = mo.group(name)
         yield Token(name, value, mo.start(), mo.end())
@@ -47,7 +54,7 @@ def segment(text, patterns=ASCII_WORD):
     regex = build_regex(patterns)
     result = []
     start = 0
-    for t in re.finditer(regex, text):
+    for t in regex.finditer(text):
         result.extend(
             [char for char in list(text[start:t.start()])
                 if char != ' '])
