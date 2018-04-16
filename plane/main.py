@@ -45,7 +45,6 @@ def replace(text, patterns):
 
 def segment(text, patterns=ASCII_WORD):
     regex = build_regex(patterns)
-    print(regex)
     result = []
     start = 0
     for t in re.finditer(regex, text):
