@@ -4,7 +4,7 @@ match, extract, remove parts of strings
 
 import re
 
-from .pattern import (
+from plane.pattern import (
     Regex,
     Token,
     DEFAULT_PATTERNS,

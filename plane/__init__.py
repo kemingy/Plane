@@ -1,11 +1,12 @@
-from .punctuation import remove_punctuation
-from .main import replace, extract, segment, build_new_regex
-from .pattern import (
+from plane.punctuation import remove_punctuation
+from plane.main import replace, extract, segment, build_new_regex
+from plane.plane import Plane
+from plane.pattern import (
     HTML,
     EMAIL,
     SPACE,
     TELEPHONE,
-    RESTRICT_URL,
+    URL,
     CHINESE,
     CJK,
 )

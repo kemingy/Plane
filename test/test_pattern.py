@@ -4,7 +4,7 @@ from plane.pattern import (
     EMAIL,
     SPACE,
     TELEPHONE,
-    RESTRICT_URL,
+    URL,
     ASCII_WORD,
     CHINESE,
     CJK,
@@ -30,11 +30,11 @@ def test_url():
     ]
     assert_list(
         urls,
-        [[x.value for x in list(extract(t, RESTRICT_URL))] for t in text]
+        [[x.value for x in list(extract(t, URL))] for t in text]
     )
     assert_list(
         expect,
-        [replace(t, RESTRICT_URL) for t in text]
+        [replace(t, URL) for t in text]
     )
 
 def test_email():

@@ -26,7 +26,7 @@ Token = namedtuple(
 
 # regex expression
 
-RESTRICT_URL = Regex(
+URL = Regex(
     'URL',
     r'(?i)https?:\/\/[!-~]+',
     '<URL>',
@@ -112,7 +112,7 @@ DEFAULT_PATTERNS = [
     EMAIL,
     SPACE,
     TELEPHONE,
-    RESTRICT_URL,
+    URL,
     ASCII_WORD,
     CHINESE,
     CJK,
