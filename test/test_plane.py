@@ -24,9 +24,9 @@ def test_segment():
 
 
 def test_remove_punctuation():
-    assert p.update(text).remove_punctuation() == \
+    assert p.update(text).remove_punctuation().text == \
            'You can send me an email at send email com '
 
-    assert p.update(text).replace(EMAIL, '').remove_punctuation() == \
+    assert p.update(text).replace(EMAIL, '').remove_punctuation().text == \
            'You can send me an email at  '
 

@@ -6,25 +6,12 @@ import re
 import sys
 import unicodedata
 
-from plane.pattern import (
-    Regex,
-    Token,
-    DEFAULT_PATTERNS,
-    ASCII_WORD,
-)
+from plane.pattern import Token, ASCII_WORD
+
 
 PUNCTUATION = [c for c in range(sys.maxunicode) 
                if unicodedata.category(chr(c)).startswith('P')]
 UNICODE_PUNCTUATION = dict(zip(PUNCTUATION, ' ' * len(PUNCTUATION)))
-
-def build_regex(regex):
-    if not isinstance(regex, list):
-        regex = [regex]
-
-    value = re.compile('|'.join('(?P<%s>%s)' % (p.name, p.pattern) 
-                       for p in regex))
-
-    return value
 
 
 class Plane:
@@ -41,7 +28,7 @@ class Plane:
         return self._values
 
     def extract(self, regex, result=False):
-        regex = build_regex(regex)
+        regex = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern))
         values = []
         for mo in regex.finditer(self._text):
             name = mo.lastgroup
@@ -76,7 +63,7 @@ class Plane:
         return self
 
     def segment(self, regex=ASCII_WORD):
-        regex = build_regex(regex)
+        regex = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern))
         result, start = [], 0
         for t in regex.finditer(self._text):
             result.extend(
@@ -89,5 +76,7 @@ class Plane:
 
     def remove_punctuation(self, repl=' '):
         if repl != ' ':
-            return self._text.translate(dict(zip(PUNCTUATION, repl * len(PUNCTUATION))))
-        return self._text.translate(UNICODE_PUNCTUATION)
+            self._text = self._text.translate(
+                dict(zip(PUNCTUATION, repl * len(PUNCTUATION))))
+        self._text = self._text.translate(UNICODE_PUNCTUATION)
+        return self

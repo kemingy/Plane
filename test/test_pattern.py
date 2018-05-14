@@ -139,7 +139,7 @@ def test_html_and_space():
 def test_ascii_word():
     text = "( ⊙ o ⊙ )What's that? It cost me $1000 to buy 0.1 bitcoin."
     expect = ['o', "What's", 'that', 'It', 'cost', 'me', '$1000', 'to', 'buy', '0.1', 'bitcoin']
-    assert extract(text, ASCII_WORD)
+    assert [t.value for t in extract(text, ASCII_WORD)] == expect
 
 def test_Chinese_and_cjk():
     text = """

@@ -13,45 +13,39 @@ from plane.pattern import (
 
 PATTERNS = dict([p.name, p] for p in DEFAULT_PATTERNS)
 
-REGEX_CACHE = {}
-
 def build_new_regex(name, regex, repl=''):
     name = name.replace(' ', '_')
     regex = Regex(name, regex, repl)
     PATTERNS[name] = regex
     return regex
 
-def build_regex(patterns):
-    if not isinstance(patterns, list):
-        patterns = [patterns]
+def build_regex(regex):
+    assert isinstance(regex, Regex)
 
-    key = str(patterns)
-    if key in REGEX_CACHE:
-        return REGEX_CACHE[key]
-    value = re.compile('|'.join('(?P<%s>%s)' % (p.name, p.pattern) for p in patterns))
-    REGEX_CACHE[key] = value
+    value = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern))
     return value
 
-def extract(text, patterns):
-    regex = build_regex(patterns)
+def extract(text, pattern):
+    regex = build_regex(pattern)
     for mo in regex.finditer(text):
         name = mo.lastgroup
         value = mo.group(name)
         yield Token(name, value, mo.start(), mo.end())
 
-def replace(text, patterns):
-    tokens = extract(text, patterns)
+def replace(text, pattern, repl=None):
+    tokens = extract(text, pattern)
     result = ''
     start = 0
+    repl = repl if repl is not None else pattern.repl
     for t in tokens:
-        result += text[start:t.start] + PATTERNS[t.name].repl
+        result += text[start:t.start] + repl
         start = t.end
     result += text[start:]
 
     return result
 
-def segment(text, patterns=ASCII_WORD):
-    regex = build_regex(patterns)
+def segment(text, pattern=ASCII_WORD):
+    regex = build_regex(pattern)
     result = []
     start = 0
     for t in regex.finditer(text):
