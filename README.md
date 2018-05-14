@@ -108,6 +108,8 @@ remove_punctuation(text, '<P>')
 
 `Plane` contains `extract`, `replace`, `segment` and `remove_punctuation`, and these methods can be called in chain. Since `segment` returns list, it can only be called in the end of the chain.
 
+`Plane.text` saves the result of processed text and `Plane.values` saves the result of extracted strings.
+
 ```python
 from plane import Plane
 from plane.pattern import EMAIL
