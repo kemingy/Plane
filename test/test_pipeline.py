@@ -27,3 +27,9 @@ def test_pipeline():
         ('extract', EMAIL),
     ])
     assert pipeline(text) == []
+
+    pipeline = Pipeline([
+        ('remove_punctuation',),
+        ('segment', ),
+    ])
+    assert pipeline('hello, world!') == ['hello', 'world']
