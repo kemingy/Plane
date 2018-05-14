@@ -41,9 +41,9 @@ from plane import build_new_regex
 custom_regex = build_new_regex('my_regex', r'(\d{4})', '<my-replacement-tag>')
 ```
 
-Default Regex:
+Default Regex: [Details](https://github.com/Momingcoder/Plane/blob/master/plane/pattern.py)
 
-* `RESTRICT_URL`: only ASCII
+* `URL`: only ASCII
 * `EMAIL`: local-part@domain
 * `TELEPHONE`: like xxx-xxxx-xxxx
 * `SPACE`: ` `, `\t`, `\n`, `\r`, `\f`, `\v`
@@ -65,7 +65,11 @@ for e in emails:
 >>> Token(name='Email', value='fake@no.com', start=0, end=11)
 >>> Token(name='Email', value='fakefake@nothing.com', start=14, end=34)
 
-replace(text, EMAIL)
+print(EMAIL)
+
+>>> Regex(name='Email', pattern='([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-]+)', repl='<Email>')
+
+replace(text, EMAIL) # replace(text, Regex, repl), if repl is not provided, Regex.repl will be used
 
 >>> '<Email> & <Email>'
 
@@ -114,8 +118,8 @@ remove_punctuation(text, '<P>')
 from plane import Plane
 from plane.pattern import EMAIL
 
-p = Plane
-p.update('My email is my@email.com.').replace(EMAIL, '').text
+p = Plane()
+p.update('My email is my@email.com.').replace(EMAIL, '').text # update() will init Plane.text and Plane.values
 
 >>> 'My email is .'
 
@@ -130,7 +134,9 @@ p.update('My email is my@email.com.').extract(EMAIL).values
 
 ### Pipeline
 
-You can use `Pipeline` if you like. `segment` and `extract` can only present in the end.
+You can use `Pipeline` if you like. 
+
+`segment` and `extract` can only present in the end.
 
 ```python
 from plane import Pipeline
