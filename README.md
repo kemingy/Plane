@@ -58,16 +58,20 @@ Use regex to `extract` or `replace`:
 from plane import EMAIL, extract, replace
 text = 'fake@no.com & fakefake@nothing.com'
 
-emails = extract(text, [EMAIL]) # this return a generator object
+emails = extract(text, EMAIL) # this return a generator object
 for e in emails:
     print(e)
 
 >>> Token(name='Email', value='fake@no.com', start=0, end=11)
 >>> Token(name='Email', value='fakefake@nothing.com', start=14, end=34)
 
-replace(text, [EMAIL])
+replace(text, EMAIL)
 
 >>> '<Email> & <Email>'
+
+replace(text, EMAIL, '')
+
+>>> ' & '
 ```
 
 ### segment
@@ -99,3 +103,41 @@ remove_punctuation(text, '<P>')
 
 >>> 'Hello world<P>'
 ```
+
+### Chain function
+
+`Plane` contains `extract`, `replace`, `segment` and `remove_punctuation`, and these methods can be called in chain. Since `segment` returns list, it can only be called in the end of the chain.
+
+```python
+from plane import Plane
+from plane.pattern import EMAIL
+
+p = Plane
+p.update('My email is my@email.com.').replace(EMAIL, '').text
+
+>>> 'My email is .'
+
+p.update('My email is my@email.com.').replace(EMAIL).segment()
+
+>>> ['My', 'email', 'is', '<Email>', '.']
+
+p.update('My email is my@email.com.').extract(EMAIL).values
+
+>>> [Token(name='Email', value='my@email.com', start=12, end=24)]
+```
+
+### Pipeline
+
+You can use `Pipeline` if you like. `segment` and `extract` can only present in the end.
+
+```python
+from plane import Pipeline
+from plane.pattern import URL
+
+pipe = Pipeline([
+    ('replace', URL, ''),
+    ('segment', ),
+])
+pipe('http://www.guokr.com is online.')
+
+>>> ['is', 'online', '.']
