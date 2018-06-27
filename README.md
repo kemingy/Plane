@@ -52,6 +52,17 @@ Default Regex: [Details](https://github.com/Momingcoder/Plane/blob/master/plane/
 * `CHINESE`: all Chinese characters (only Han and punctuations)
 * `CJK`: all Chinese, Japanese, Korean(CJK) characters and punctuations
 
+Regex name | replace
+-----------|---------
+URL        | `'<URL>'`
+EMAIL      | `'<Email>'`
+TELEPHONE  | `'<Telephone>'`
+SPACE      | `' '`
+HTML       | `' '`
+ASCII_WORD | `' '`
+CHINESE    | `' '`
+CJK        | `' '`
+
 Use regex to `extract` or `replace`:
 
 ```python
@@ -84,8 +95,8 @@ replace(text, EMAIL, '')
 
 ```python
 from plane import segment
-segment('你看起来gaygay的。<EOS>')
->>> ['你', '看', '起', '来', 'gaygay', '的', '。', '<EOS>']
+segment('你看起来guaiguai的。<EOS>')
+>>> ['你', '看', '起', '来', 'guaiguai', '的', '。', '<EOS>']
 ```
 
 ### punctuation
