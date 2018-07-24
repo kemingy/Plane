@@ -1,5 +1,5 @@
 """
-Plane class
+Plane class, support chain function calls.
 """
 
 import re
@@ -15,6 +15,9 @@ UNICODE_PUNCTUATION = dict(zip(PUNCTUATION, ' ' * len(PUNCTUATION)))
 
 
 class Plane:
+    """
+    Init :class:`Plane.text` and :class:`Plane.values` when the instance is created.
+    """
     def __init__(self):
         self._text = ''
         self._values = []
@@ -28,6 +31,12 @@ class Plane:
         return self._values
 
     def extract(self, regex, result=False):
+        """
+        :param Regex regex: :class:`Regex`
+        :param bool result: if `True`, return result directly
+
+        Extract tokens, results is saved in :class:`Plane.values`
+        """
         regex = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern))
         values = []
         for mo in regex.finditer(self._text):
@@ -41,6 +50,13 @@ class Plane:
         return self
 
     def replace(self, regex, repl=None, result=False):
+        """
+        :param Regex regex: :class:`Regex`
+        :param str repl: replacement for regex, if setted, default value will be overwritten
+        :param bool result: if `True`, return result directly
+
+        Replace matched :class:`regex` patterns with :class:`repl`.
+        """
         repl = repl if repl is not None else regex.repl
         text, start = '', 0
 
@@ -55,6 +71,11 @@ class Plane:
         return self
 
     def update(self, text):
+        """
+        :param str text: text string.
+
+        Init `Plane.text` and `Plane.values`.
+        """
         if not isinstance(text, str):
             raise TypeError('Only support string.')
 
@@ -63,6 +84,12 @@ class Plane:
         return self
 
     def segment(self, regex=ASCII_WORD):
+        """
+        :param Regex regex: default regex is `ASCII_WORD`, this will keep all english words complete
+
+        Segment sentence.
+        Chinese words will be split into char and English words will be keeped.
+        """
         regex = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern))
         result, start = [], 0
         for t in regex.finditer(self._text):
@@ -75,6 +102,11 @@ class Plane:
         return result
 
     def remove_punctuation(self, repl=' '):
+        """
+        :param str repl: replacement for regex, if setted, default value will be overwritten
+
+        remove all punctuations
+        """
         if repl != ' ':
             self._text = self._text.translate(
                 dict(zip(PUNCTUATION, repl * len(PUNCTUATION))))

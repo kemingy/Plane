@@ -1,5 +1,5 @@
 """
-match, extract, remove parts of strings
+Basic :meth:`match`, :meth:`extract`, :meth:`segment` function.
 """
 
 import re
@@ -14,6 +14,13 @@ from plane.pattern import (
 PATTERNS = dict([p.name, p] for p in DEFAULT_PATTERNS)
 
 def build_new_regex(name, regex, repl=''):
+    """
+    :param str name: regex pattern name
+    :param str regex: regex
+    :param str repl: replacement
+
+    build regex pattern, space :code:`' '` in name will be replaced by :code:`'_'` 
+    """
     name = name.replace(' ', '_')
     regex = Regex(name, regex, repl)
     PATTERNS[name] = regex
@@ -26,6 +33,12 @@ def build_regex(regex):
     return value
 
 def extract(text, pattern):
+    """
+    :param str text: text
+    :param Regex pattern: :class:`plane.pattern.Regex`
+
+    Extract tokens with regex pattern.
+    """
     regex = build_regex(pattern)
     for mo in regex.finditer(text):
         name = mo.lastgroup
@@ -33,6 +46,13 @@ def extract(text, pattern):
         yield Token(name, value, mo.start(), mo.end())
 
 def replace(text, pattern, repl=None):
+    """
+    :param str text: text
+    :param Regex pattern: :class:`plane.pattern.Regex`
+    :param str repl: replacement for pattern, if setted, default `repl` will be overwritten
+
+    Replace matched tokens with `repl`.
+    """
     tokens = extract(text, pattern)
     result = ''
     start = 0
@@ -45,6 +65,13 @@ def replace(text, pattern, repl=None):
     return result
 
 def segment(text, pattern=ASCII_WORD):
+    """
+    :param str text: text
+    :param Regex pattern: :class:`plane.pattern.Regex`
+
+    Segment sentence.
+    Chinese words will be split into char and English words will be keeped.
+    """
     regex = build_regex(pattern)
     result = []
     start = 0

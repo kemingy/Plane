@@ -9,7 +9,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='plane',
-    version='0.1.0',
+    version='0.1.1',
     description='A lib for text preprocessing',
     long_description=long_description,
     author='Keming Yang',

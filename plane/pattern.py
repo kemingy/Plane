@@ -1,20 +1,23 @@
-"""
-All regex patterns.
-
-"""
-
 from collections import namedtuple
 
-Regex = namedtuple(
+class Regex(namedtuple(
     'Regex',
     [
         'name',
         'pattern',
         'repl',
     ]
-)
+)): 
+    """
+    :param str name: regex name
+    :param str pattern: Python regex
+    :param str repl: replaement
 
-Token = namedtuple(
+    regex pattern
+    """
+
+
+class Token(namedtuple(
     'Token',
     [
         'name',
@@ -22,46 +25,66 @@ Token = namedtuple(
         'start',
         'end',
     ]
-)
+)):
+    """
+    :param str name: token name
+    :param str value: matched text
+    :param int start: matched text started index
+    :param int end: matched text ended index
 
-# regex expression
+    matched token
+    """
 
+
+#: URLs should begin with :code:`http` or :code:`https`.
+#:
+#: Only support ASCII chars.
 URL = Regex(
     'URL',
     r'(?i)https?:\/\/[!-~]+',
     '<URL>',
 )
 
+#: [local-part]@[domain].[top-level-domain]
 EMAIL = Regex(
     'Email',
     r'([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+)',
     '<Email>',
 )
 
+#: Chinese telephone number format of 11 numbers. ( `[xxx][xxxx][xxxx]` )
+#: 
+#: There can be space, `+`, `.`, `-` as delimiters. Such as
+#: `155-5555-5555`
 TELEPHONE = Regex(
     'Telephone',
     r'(\d{3})[ +.-]?(\d{4})[ +.-]?(\d{4})',
     '<Telephone>',
 )
 
+#: :code:`r(\s+)`
 SPACE = Regex(
     'Space',
     r'(\s+)',
     ' ',
 )
 
+#: HTML tags includes 'script', 'style' and others.
 HTML= Regex(
     'HTML',
     r'(?s)<script.*?>.*?</script>|<style.*?>.*?</style>|<.*?>',
     ' ',
 )
 
+#: English words, numbers, like 'hash', '3.14', '$100', '<EOS>'
+#: , '99.9%'
 ASCII_WORD = Regex(
     'ASCII_word',
     r'[<$#&]?[a-zA-Z0-9_.-]*\'?[a-zA-Z0-9]+[%>]?',
     ' ',
 )
 
+#: All Chinese char includes most punctuations.
 CHINESE = Regex(
     'Chinese',
     r'[' + \
@@ -80,6 +103,7 @@ CHINESE = Regex(
     ' ',
 )
 
+#: All CJK chars.
 CJK = Regex(
     'CJK',
     r'[' + \
