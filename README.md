@@ -1,6 +1,6 @@
 # Plane
 
-[![Build Status](https://travis-ci.org/Momingcoder/Plane.svg?branch=master)](https://travis-ci.org/Momingcoder/Plane)
+[![Build Status](https://travis-ci.org/kemingy/Plane.svg?branch=master)](https://travis-ci.org/kemingy/Plane)
 
 > **Plane** is a tool for shaping wood using muscle power to force the cutting blade over the wood surface.  
 > *from [Wikipedia](https://en.wikipedia.org/wiki/Plane_(tool))*
@@ -8,6 +8,8 @@
 ![plane(tool) from wikipedia](https://upload.wikimedia.org/wikipedia/commons/e/e3/Kanna2.gif)
 
 This package is used for extracting or replacing specific parts from text, like URL, Email, HTML tags, telephone numbers and so on. Or just remove all unicode punctuations.
+
+See the full [Documents](https://kemingy.github.io/Plane/).
 
 ## Install
 
