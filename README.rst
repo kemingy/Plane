@@ -35,57 +35,80 @@ Install from source
 Usage
 -----
 
-pattern
-~~~~~~~
+Features
+---------
 
-``Regex`` is a namedtuple with 3 items:
+* build-in regex patterns: :class:`plane.pattern.Regex`
+* custom regex patterns
+* extract, replace patterns
+* segment sentence
+* chain function calls: :class:`plane.plane.Plane`
 
--  ``name``
--  ``pattern``: Regular Expression
--  ``repl``: replacement tag, this will replace matched regex when using
-   ``replace`` function
 
-.. code:: python
+Why we need this?
+------------------------
 
-    # create new pattern
-    from plane import build_new_regex
-    custom_regex = build_new_regex('my_regex', r'(\d{4})', '<my-replacement-tag>')
+In NLP(Natural language processing) task, cleaning text data may be one of the most boring things. `Plane` is built for this.
 
-Default Regex:
+* extract content from web page source
+* detect urls, emails, telephone numbers
+* split sentence composed of Chinese and English
+* remove all punctuations to get pure text
 
--  ``RESTRICT_URL``: only ASCII
--  ``EMAIL``: local-part@domain
--  ``TELEPHONE``: like xxx-xxxx-xxxx
--  ``SPACE``: ``r'\s'``
--  ``HTML``: HTML tags, Script part and CSS part
 
-Use regex to ``extract`` or ``replace``:
+Usage
+---------
 
-.. code:: python
+Only support Python3.
+
+`extract` and `replace`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
 
     from plane import EMAIL, extract, replace
     text = 'fake@no.com & fakefake@nothing.com'
 
-    emails = extract(text, [EMAIL]) # this return a generator object
+    emails = extract(text, EMAIL) # this return a generator object
     for e in emails:
         print(e)
 
     >>> Token(name='Email', value='fake@no.com', start=0, end=11)
     >>> Token(name='Email', value='fakefake@nothing.com', start=14, end=34)
 
-    replace(text, [EMAIL])
+    print(EMAIL)
+
+    >>> Regex(name='Email', pattern='([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-]+)', repl='<Email>')
+
+    replace(text, EMAIL) # replace(text, Regex, repl), if repl is not provided, Regex.repl will be used
 
     >>> '<Email> & <Email>'
 
-punctuation
-~~~~~~~~~~~
+    replace(text, EMAIL, '')
 
-``remove_punctuation`` will replace all unicode punctuations to ``' '``
-or something you send to this function as paramter ``repl``.
+    >>> ' & '
+
+
+`segment`
+~~~~~~~~~~~~~~~~
+
+`segment` can be used to segment sentence, English and Numbers like 'PS4' will be keeped and others like Chinese '中文' will be split to single word format `['中', '文']`.
+
+::
+
+    from plane import segment
+    segment('你看起来guaiguai的。<EOS>')
+    >>> ['你', '看', '起', '来', 'guaiguai', '的', '。', '<EOS>']
+
+
+replace all punctuations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`remove_punctuation` will replace all unicode punctuations to `' '` or something you send to this function as paramter `repl`.
 
 **Attention**: '+', '^', '$', '~' and some chars are not punctuation.
 
-.. code:: python
+::
 
     from plane import remove_punctuation
 
@@ -98,6 +121,34 @@ or something you send to this function as paramter ``repl``.
     remove_punctuation(text, '<P>')
 
     >>> 'Hello world<P>'
+
+
+chain function calls
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Plane` contains `extract`, `replace`, `segment` and `remove_punctuation`, and these methods can be called in chain. Since `segment` returns list, it can only be called in the end of the chain.
+
+`Plane.text` saves the result of processed text and `Plane.values` saves the result of extracted strings.
+
+::
+
+    from plane import Plane
+    from plane.pattern import EMAIL
+
+    p = Plane()
+    p.update('My email is my@email.com.').replace(EMAIL, '').text # update() will init Plane.text and Plane.values
+
+    >>> 'My email is .'
+
+    p.update('My email is my@email.com.').replace(EMAIL).segment()
+
+    >>> ['My', 'email', 'is', '<Email>', '.']
+
+    p.update('My email is my@email.com.').extract(EMAIL).values
+
+    >>> [Token(name='Email', value='my@email.com', start=12, end=24)]
+
+
 
 .. |Build Status| image:: https://travis-ci.org/Momingcoder/Plane.svg?branch=master
    :target: https://travis-ci.org/Momingcoder/Plane
