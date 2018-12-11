@@ -1,5 +1,6 @@
 from plane import extract, replace, build_new_regex
 
+
 def test_custom_regex():
     custom_regex = build_new_regex('custom', r'(?i)(one|two|three)', '<NUM>')
     text = 'One of the two will be used. Which one is undefined.'

@@ -15,6 +15,7 @@ Processor = namedtuple(
     ]
 )
 
+
 def build_procssor(func, regex=None, repl=None):
     if func == 'segment':
         regex = regex or ASCII_WORD
@@ -44,7 +45,6 @@ class Pipeline:
                 continue
             else:
                 raise NameError('Unknown function name.')
-
 
     def __call__(self, text):
         for p in self.processors:

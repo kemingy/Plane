@@ -10,15 +10,18 @@ from plane.pattern import (
     CJK,
 )
 
+
 def assert_list(x, y):
     assert len(x) == len(y)
     for i in range(len(x)):
         assert x[i] == y[i]
 
+
 def test_url():
     text = [
         'http://www.guokr.com/如何',
-        'For more information about Python Re, check https://docs.python.org/3/library/re.html',
+        'For more information about Python Re, check'
+        ' https://docs.python.org/3/library/re.html',
     ]
     urls = [
         ['http://www.guokr.com/'],
@@ -37,10 +40,12 @@ def test_url():
         [replace(t, URL) for t in text]
     )
 
+
 def test_email():
     text = [
         'Email Address: hello@kitty.com.',
-        '电子邮件地址中通常会忽略一部分 full stops，比如 yes.sir@guokr.com 相当于 yessir@guokr.com',
+        '电子邮件地址中通常会忽略一部分 full stops，比如 yes.sir@guokr.com '
+        '相当于 yessir@guokr.com',
     ]
     emails = [
         ['hello@kitty.com'],
@@ -58,6 +63,7 @@ def test_email():
         expect,
         [replace(t, EMAIL) for t in text]
     )
+
 
 def test_phone():
     text = [
@@ -84,6 +90,7 @@ def test_phone():
         [replace(t, TELEPHONE) for t in text]
     )
 
+
 def test_space():
     text = [
         'hello world!\texciting!',
@@ -107,6 +114,7 @@ def test_space():
         expect,
         [replace(t, SPACE) for t in text]
     )
+
 
 def test_html_and_space():
     text = """
@@ -136,10 +144,13 @@ def test_html_and_space():
     expect = """ Document Don't do it! """
     assert replace(replace(text, HTML), SPACE) == expect
 
+
 def test_ascii_word():
     text = "( ⊙ o ⊙ )What's that? It cost me $1000 to buy 0.1 bitcoin."
-    expect = ['o', "What's", 'that', 'It', 'cost', 'me', '$1000', 'to', 'buy', '0.1', 'bitcoin']
+    expect = ['o', "What's", 'that', 'It', 'cost',
+              'me', '$1000', 'to', 'buy', '0.1', 'bitcoin']
     assert [t.value for t in extract(text, ASCII_WORD)] == expect
+
 
 def test_Chinese_and_cjk():
     text = """

@@ -13,24 +13,28 @@ from plane.pattern import (
 
 PATTERNS = dict([p.name, p] for p in DEFAULT_PATTERNS)
 
+
 def build_new_regex(name, regex, repl=''):
     """
     :param str name: regex pattern name
     :param str regex: regex
     :param str repl: replacement
 
-    build regex pattern, space :code:`' '` in name will be replaced by :code:`'_'` 
+    build regex pattern, space :code:`' '` in name will be replaced by
+    :code:`'_'`
     """
     name = name.replace(' ', '_')
     regex = Regex(name, regex, repl)
     PATTERNS[name] = regex
     return regex
 
+
 def build_regex(regex):
     assert isinstance(regex, Regex)
 
     value = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern))
     return value
+
 
 def extract(text, pattern):
     """
@@ -45,11 +49,13 @@ def extract(text, pattern):
         value = mo.group(name)
         yield Token(name, value, mo.start(), mo.end())
 
+
 def replace(text, pattern, repl=None):
     """
     :param str text: text
     :param Regex pattern: :class:`plane.pattern.Regex`
-    :param str repl: replacement for pattern, if setted, default `repl` will be overwritten
+    :param str repl: replacement for pattern, if setted, default `repl` \
+    will be overwritten
 
     Replace matched tokens with `repl`.
     """
@@ -63,6 +69,7 @@ def replace(text, pattern, repl=None):
     result += text[start:]
 
     return result
+
 
 def segment(text, pattern=ASCII_WORD):
     """

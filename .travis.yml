@@ -6,9 +6,11 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install -r requirements_docs.txt
+  - pip install flake8
   - pip install -e .
 
 script:
+  - flake8
   - pytest
 
 after_success:
