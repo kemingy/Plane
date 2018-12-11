@@ -27,6 +27,14 @@ pip install plane
 python setup.py install
 ```
 
+## Features
+
+* build-in regex patterns: `plane.pattern.Regex`
+* custom regex patterns
+* extract, replace patterns
+* segment sentence
+* chain function calls: `plane.plane.Plane`
+
 ## Usage
 
 ### pattern

@@ -9,14 +9,15 @@ import unicodedata
 from plane.pattern import Token, ASCII_WORD
 
 
-PUNCTUATION = [c for c in range(sys.maxunicode) 
+PUNCTUATION = [c for c in range(sys.maxunicode)
                if unicodedata.category(chr(c)).startswith('P')]
 UNICODE_PUNCTUATION = dict(zip(PUNCTUATION, ' ' * len(PUNCTUATION)))
 
 
 class Plane:
     """
-    Init :class:`Plane.text` and :class:`Plane.values` when the instance is created.
+    Init :class:`Plane.text` and :class:`Plane.values` when the instance is
+    created.
     """
     def __init__(self):
         self._text = ''
@@ -52,7 +53,8 @@ class Plane:
     def replace(self, regex, repl=None, result=False):
         """
         :param Regex regex: :class:`Regex`
-        :param str repl: replacement for regex, if setted, default value will be overwritten
+        :param str repl: replacement for regex, if setted, default value will \
+        be overwritten
         :param bool result: if `True`, return result directly
 
         Replace matched :class:`regex` patterns with :class:`repl`.
@@ -85,7 +87,8 @@ class Plane:
 
     def segment(self, regex=ASCII_WORD):
         """
-        :param Regex regex: default regex is `ASCII_WORD`, this will keep all english words complete
+        :param Regex regex: default regex is `ASCII_WORD`, this will keep all \
+        english words complete
 
         Segment sentence.
         Chinese words will be split into char and English words will be keeped.
@@ -95,15 +98,17 @@ class Plane:
         for t in regex.finditer(self._text):
             result.extend(
                 [char for char in list(self._text[start:t.start()])
-                      if char != ' '])
+                 if char != ' '])
             result.append(self._text[t.start():t.end()])
             start = t.end()
-        result.extend([char for char in list(self._text[start:]) if char != ' '])
+        result.extend([char for char in list(self._text[start:])
+                       if char != ' '])
         return result
 
     def remove_punctuation(self, repl=' '):
         """
-        :param str repl: replacement for regex, if setted, default value will be overwritten
+        :param str repl: replacement for regex, if setted, default value will \
+        be overwritten
 
         remove all punctuations
         """

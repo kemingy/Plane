@@ -1,5 +1,6 @@
 from collections import namedtuple
 
+
 class Regex(namedtuple(
     'Regex',
     [
@@ -7,7 +8,7 @@ class Regex(namedtuple(
         'pattern',
         'repl',
     ]
-)): 
+)):
     """
     :param str name: regex name
     :param str pattern: Python regex
@@ -53,7 +54,7 @@ EMAIL = Regex(
 )
 
 #: Chinese telephone number format of 11 numbers. ( `[xxx][xxxx][xxxx]` )
-#: 
+#:
 #: There can be space, `+`, `.`, `-` as delimiters. Such as
 #: `155-5555-5555`
 TELEPHONE = Regex(
@@ -70,7 +71,7 @@ SPACE = Regex(
 )
 
 #: HTML tags includes 'script', 'style' and others.
-HTML= Regex(
+HTML = Regex(
     'HTML',
     r'(?s)<script.*?>.*?</script>|<style.*?>.*?</style>|<.*?>',
     ' ',
@@ -87,7 +88,7 @@ ASCII_WORD = Regex(
 #: All Chinese char includes most punctuations.
 CHINESE = Regex(
     'Chinese',
-    r'[' + \
+    r'[' +
     ''.join([r'\U{:0>8X}-\U{:0>8X}'.format(begin, end) for begin, end in [
         (0x4E00, 0x9FFF),       # CJK Unified Ideographs
         (0x3400, 0x4DBF),       # CJK Unified Ideographs Extension A
@@ -106,7 +107,7 @@ CHINESE = Regex(
 #: All CJK chars.
 CJK = Regex(
     'CJK',
-    r'[' + \
+    r'[' +
     ''.join([r'\U{:0>8X}-\U{:0>8X}'.format(begin, end) for begin, end in [
         (0x4E00, 0x9FFF),       # CJK Unified Ideographs
         (0x3400, 0x4DBF),       # CJK Unified Ideographs Extension A

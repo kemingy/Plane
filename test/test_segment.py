@@ -1,5 +1,6 @@
 from plane import segment
 
+
 def test_segment():
     text = '朋友，打 NBA2K 吗？我刚买了PS4pro，而且我有猫。'
     expect = ['朋', '友', '，', '打', 'NBA2K', '吗', '？',
