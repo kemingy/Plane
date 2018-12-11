@@ -4,13 +4,13 @@ from plane.pattern import EMAIL, TELEPHONE
 
 def test_pipeline():
     text = 'You can send me an email at send@email.com ' \
-    'or call me at 123-4567-8910.'
+        'or call me at 123-4567-8910.'
     pipeline = Pipeline([
         ('replace', EMAIL),
         ('replace', TELEPHONE, ''),
     ])
     assert pipeline(text) == 'You can send me an email ' \
-    'at <Email> or call me at .'
+        'at <Email> or call me at .'
 
     pipeline = Pipeline([
         ('replace', EMAIL, ''),
