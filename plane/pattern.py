@@ -16,12 +16,13 @@ class Regex(namedtuple(
 
     regex pattern
     """
+
     def __add__(self, other):
         return Regex(
-            '{}_&_{}'.format(self.name, other.name),
+            '{}_{}'.format(self.name, other.name),
             '{}|{}'.format(self.pattern, other.pattern),
-            self.repl if self.repl == other.repl else
-            '{}_&_{}'.format(self.repl, other.repl)
+            self.repl if self.repl == other.repl else '{}_{}'
+                .format(self.repl, other.repl)
         )
 
 
@@ -56,7 +57,7 @@ URL = Regex(
 #: [local-part]@[domain].[top-level-domain]
 EMAIL = Regex(
     'Email',
-    r'([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+)',
+    r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+',
     '<Email>',
 )
 
@@ -66,14 +67,14 @@ EMAIL = Regex(
 #: `155-5555-5555`
 TELEPHONE = Regex(
     'Telephone',
-    r'(\d{3})[ +.-]?(\d{4})[ +.-]?(\d{4})',
+    r'\d{3}[ +.-]?\d{4}[ +.-]?\d{4}',
     '<Telephone>',
 )
 
 #: :code:`r(\s+)`
 SPACE = Regex(
     'Space',
-    r'(\s+)',
+    r'\s+',
     ' ',
 )
 
