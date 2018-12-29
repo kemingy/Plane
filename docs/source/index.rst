@@ -19,6 +19,7 @@ Features
 
 * build-in regex patterns: :class:`plane.pattern.Regex`
 * custom regex patterns
+* pattern combination
 * extract, replace patterns
 * segment sentence
 * chain function calls: :class:`plane.plane.Plane`
@@ -67,6 +68,26 @@ Only support Python3.
     replace(text, EMAIL, '')
 
     >>> ' & '
+
+
+Pattern combination
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can create your own pattern with :func:`plane.func.build_new_regex`:
+
+::
+
+    from plane import extract, build_new_regex, CHINESE_WORDS
+    ASCII = build_new_regex('ascii', r'[a-zA-Z0-9]+', ' ')
+    WORDS = ASCII + CHINESE_WORDS
+    print(WORDS)
+
+    >> Regex(name='ascii_Chinese_words', pattern='[a-zA-Z0-9]+|[\\U00004E00-\\U00009FFF\\U00003400-\\U00004DBF\\U00020000-\\U0002A6DF\\U0002A700-\\U0002B73F\\U0002B740-\\U0002B81F\\U0002B820-\\U0002CEAF\\U0002CEB0-\\U0002EBEF]+', repl=' ')
+
+    text = "自然语言处理太难了！who can help me? (╯▔🔺▔)╯"
+    print(' '.join([t.value for t in list(extract(text, WORDS))]))
+    
+    >> "自然语言处理太难了 who can help me"
 
 
 `segment`
