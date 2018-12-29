@@ -7,8 +7,10 @@ You can use :class:`Plane.pattern` to process these chars.
 import sys
 import unicodedata
 
-PUNCTUATION = [c for c in range(sys.maxunicode)
-               if unicodedata.category(chr(c)).startswith('P')]
+PUNCTUATION = [
+    c for c in range(sys.maxunicode)
+    if unicodedata.category(chr(c)).startswith('P')
+]
 
 DEFAULT_REPLACER = ' '
 

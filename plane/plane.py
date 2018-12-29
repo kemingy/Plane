@@ -9,8 +9,10 @@ import unicodedata
 from plane.pattern import Token, ASCII_WORD
 
 
-PUNCTUATION = [c for c in range(sys.maxunicode)
-               if unicodedata.category(chr(c)).startswith('P')]
+PUNCTUATION = [
+    c for c in range(sys.maxunicode)
+    if unicodedata.category(chr(c)).startswith('P')
+]
 UNICODE_PUNCTUATION = dict(zip(PUNCTUATION, ' ' * len(PUNCTUATION)))
 
 
