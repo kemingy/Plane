@@ -1,4 +1,4 @@
-from plane import extract, replace
+from plane import extract, replace, build_new_regex
 from plane.pattern import (
     HTML,
     EMAIL,
@@ -8,6 +8,7 @@ from plane.pattern import (
     ASCII_WORD,
     CHINESE,
     CJK,
+    CHINESE_WORDS
 )
 
 
@@ -164,3 +165,11 @@ Speed = 3×10^8 ㎞/s.
     expect_cjk = '世界和平？㎞'
     assert ''.join([m.value for m in extract(text, CHINESE)]) == expect_chinese
     assert ''.join([m.value for m in extract(text, CJK)]) == expect_cjk
+
+
+def test_pattern_add():
+    ASCII = build_new_regex('ascii', r'[a-zA-Z0-9]+', ' ')
+    WORDS = ASCII + CHINESE_WORDS
+    text = "自然语言处理太难了！who can help me? (╯▔🔺▔)╯"
+    expect = "自然语言处理太难了 who can help me"
+    assert ' '.join([t.value for t in extract(text, WORDS)]) == expect
