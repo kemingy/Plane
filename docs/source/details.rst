@@ -4,13 +4,20 @@ Function details
 default function
 -----------------
 
-.. automodule:: plane.main
+.. automodule:: plane.func
    :members:
 
-chain function call
+Chain function call
 --------------------
 
 .. automodule:: plane.plane
+   :members:
+
+
+Pipeline
+------------------
+
+.. automodule:: plane.pipeline
    :members:
 
 

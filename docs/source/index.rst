@@ -22,6 +22,7 @@ Features
 * extract, replace patterns
 * segment sentence
 * chain function calls: :class:`plane.plane.Plane`
+* pipeline: :class:`plane.pipeline.Pipeline`
 
 
 Why we need this?
@@ -127,6 +128,23 @@ chain function calls
 
     >>> [Token(name='Email', value='my@email.com', start=12, end=24)]
 
+
+pipeline
+~~~~~~~~~~~~~~~~
+
+You can use `Pipeline` if you like.
+
+::
+
+    from plane import Pipeline, replace, segment
+    from plane.pattern import URL
+
+    pipe = Pipeline()
+    pipe.add(replace, URL, '')
+    pipe.add(segment)
+    pipe('http://www.guokr.com is online.')
+
+    >>> ['is', 'online', '.']
 
 
 .. toctree::
