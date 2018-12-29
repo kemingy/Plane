@@ -5,6 +5,19 @@ from plane.pattern import Token
 
 
 class Pipeline:
+    """
+        Initialize pipeline with functions.
+        For example:
+        ::
+
+            pl = Pipeline(
+                lambda text: replace(text, EMAIL),
+                segment,
+            )
+            pl("My email is abc@hello.com")
+
+            >> ["My", "email", "is", "<Email>"]
+    """
     def __init__(self, *functions):
         self.functions = []
         for func in functions:
@@ -32,6 +45,17 @@ class Pipeline:
         return text
 
     def add(self, func, *args, **kwargs):
+        """
+        Add functions.
+        ::
+
+            pl = Pipeline()
+            pl.add(replace, EMAIL)
+            pl.add(segment)
+            pl("My email is abc@hello.com")
+
+            >> ["My", "email", "is", "<Email>"]
+        """
         if 'text' in signature(func).parameters:
             def f(text): return func(text, *args, *kwargs)
         else:
