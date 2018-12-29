@@ -16,6 +16,13 @@ class Regex(namedtuple(
 
     regex pattern
     """
+    def __add__(self, other):
+        return Regex(
+            '{}_&_{}'.format(self.name, other.name),
+            '{}|{}'.format(self.pattern, other.pattern),
+            self.repl if self.repl == other.repl else
+            '{}_&_{}'.format(self.repl, other.repl)
+        )
 
 
 class Token(namedtuple(
@@ -85,7 +92,23 @@ ASCII_WORD = Regex(
     ' ',
 )
 
-#: All Chinese char includes most punctuations.
+#: All Chinese words without punctuations.
+CHINESE_WORDS = Regex(
+    'Chinese_words',
+    r'[' +
+    ''.join([r'\U{:0>8X}-\U{:0>8X}'.format(begin, end) for begin, end in [
+        (0x4E00, 0x9FFF),       # CJK Unified Ideographs
+        (0x3400, 0x4DBF),       # CJK Unified Ideographs Extension A
+        (0x20000, 0x2A6DF),     # CJK Unified Ideographs Extension B
+        (0x2A700, 0x2B73F),     # CJK Unified Ideographs Extension C
+        (0x2B740, 0x2B81F),     # CJK Unified Ideographs Extension D
+        (0x2B820, 0x2CEAF),     # CJK Unified Ideographs Extension E
+        (0x2CEB0, 0x2EBEF),     # CJK Unified Ideographs Extension F
+    ]]) + r']+',
+    ' ',
+)
+
+#: All Chinese words includes most punctuations.
 CHINESE = Regex(
     'Chinese',
     r'[' +
