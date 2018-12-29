@@ -1,63 +1,63 @@
 import types
-from collections import namedtuple
+from inspect import signature
 
-from plane.main import extract, replace, segment
-from plane.punctuation import remove_punctuation
-from plane.pattern import Regex
-from plane.pattern import ASCII_WORD
-
-Processor = namedtuple(
-    'Processor',
-    [
-        'func',
-        'regex',
-        'repl',
-    ]
-)
-
-
-def build_procssor(func, regex=None, repl=None):
-    if func == 'segment':
-        regex = regex or ASCII_WORD
-    elif func == 'remove_punctuation':
-        repl = repl if repl is not None else ' '
-    return Processor(func, regex, repl)
+from plane.pattern import Token
 
 
 class Pipeline:
-    def __init__(self, processors):
-        self._check(processors)
-        self.processors = [build_procssor(*p) for p in processors]
+    """
+        Initialize pipeline with functions.
+        For example:
+        ::
 
-    def _check(self, processors):
-        for i, p in enumerate(processors):
-            assert isinstance(p[0], str)
-            if p[0] == 'replace':
-                assert len(p) > 1
-                assert isinstance(p[1], Regex)
-            elif p[0] == 'extract':
-                assert i == len(processors) - 1
-                assert len(p) > 1
-                assert isinstance(p[1], Regex)
-            elif p[0] == 'segment':
-                assert i == len(processors) - 1
-            elif p[0] == 'remove_punctuation':
-                continue
-            else:
-                raise NameError('Unknown function name.')
+            pl = Pipeline(
+                lambda text: replace(text, EMAIL),
+                segment,
+            )
+            pl("My email is abc@hello.com")
+
+            >> ["My", "email", "is", "<Email>"]
+    """
+    def __init__(self, *functions):
+        self.functions = []
+        for func in functions:
+            if not callable(func):
+                raise ("Cann't call func: {}".format(func))
+            self.functions.append(func)
 
     def __call__(self, text):
-        for p in self.processors:
-            if p.func == 'segment':
-                text = segment(text, p.regex)
-            elif p.func == 'extract':
-                text = extract(text, p.regex)
-            elif p.func == 'replace':
-                text = replace(text, p.regex, p.repl)
-            else:
-                text = remove_punctuation(text, p.repl)
-                print(text)
+        for func in self.functions:
+            if not text:
+                return text
+            if isinstance(text, types.GeneratorType):
+                text = list(text)
+            if isinstance(text, list):
+                if isinstance(text[0], str):
+                    text = " ".join(text)
+                elif isinstance(text[0], Token):
+                    text = " ".join([t.value for t in text])
+                else:
+                    raise TypeError(
+                        "expected string or Token in list, but get {}"
+                        .format(type(text[0])))
 
-        if isinstance(text, types.GeneratorType):
-            return list(text)
+            text = func(text)
         return text
+
+    def add(self, func, *args, **kwargs):
+        """
+        Add functions.
+        ::
+
+            pl = Pipeline()
+            pl.add(replace, EMAIL)
+            pl.add(segment)
+            pl("My email is abc@hello.com")
+
+            >> ["My", "email", "is", "<Email>"]
+        """
+        if 'text' in signature(func).parameters:
+            def f(text): return func(text, *args, *kwargs)
+        else:
+            f = func(*args, **kwargs)
+        self.functions.append(f)

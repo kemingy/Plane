@@ -34,8 +34,37 @@ python setup.py install
 * extract, replace patterns
 * segment sentence
 * chain function calls: `plane.plane.Plane`
+* pipeline: `plane.Pipeline`
 
 ## Usage
+
+### Quick start
+
+Use regex to `extract` or `replace`:
+
+```python
+from plane import EMAIL, extract, replace
+text = 'fake@no.com & fakefake@nothing.com'
+
+emails = extract(text, EMAIL) # this return a generator object
+for e in emails:
+    print(e)
+
+>>> Token(name='Email', value='fake@no.com', start=0, end=11)
+>>> Token(name='Email', value='fakefake@nothing.com', start=14, end=34)
+
+print(EMAIL)
+
+>>> Regex(name='Email', pattern='([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-]+)', repl='<Email>')
+
+replace(text, EMAIL) # replace(text, Regex, repl), if repl is not provided, Regex.repl will be used
+
+>>> '<Email> & <Email>'
+
+replace(text, EMAIL, '')
+
+>>> ' & '
+```
 
 ### pattern
 
@@ -73,31 +102,6 @@ ASCII_WORD | `' '`
 CHINESE    | `' '`
 CJK        | `' '`
 
-Use regex to `extract` or `replace`:
-
-```python
-from plane import EMAIL, extract, replace
-text = 'fake@no.com & fakefake@nothing.com'
-
-emails = extract(text, EMAIL) # this return a generator object
-for e in emails:
-    print(e)
-
->>> Token(name='Email', value='fake@no.com', start=0, end=11)
->>> Token(name='Email', value='fakefake@nothing.com', start=14, end=34)
-
-print(EMAIL)
-
->>> Regex(name='Email', pattern='([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-]+)', repl='<Email>')
-
-replace(text, EMAIL) # replace(text, Regex, repl), if repl is not provided, Regex.repl will be used
-
->>> '<Email> & <Email>'
-
-replace(text, EMAIL, '')
-
->>> ' & '
-```
 
 ### segment
 
@@ -160,13 +164,12 @@ You can use `Pipeline` if you like.
 `segment` and `extract` can only present in the end.
 
 ```python
-from plane import Pipeline
+from plane import Pipeline, replace, segment
 from plane.pattern import URL
 
-pipe = Pipeline([
-    ('replace', URL, ''),
-    ('segment', ),
-])
+pipe = Pipeline()
+pipe.add(replace, URL, '')
+pipe.add(segment)
 pipe('http://www.guokr.com is online.')
 
 >>> ['is', 'online', '.']
