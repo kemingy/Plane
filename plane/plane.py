@@ -7,13 +7,7 @@ import sys
 import unicodedata
 
 from plane.pattern import Token, ASCII_WORD
-
-
-PUNCTUATION = [
-    c for c in range(sys.maxunicode)
-    if unicodedata.category(chr(c)).startswith('P')
-]
-UNICODE_PUNCTUATION = dict(zip(PUNCTUATION, ' ' * len(PUNCTUATION)))
+from plane.punctuation import punc
 
 
 class Plane:
@@ -114,8 +108,5 @@ class Plane:
 
         remove all punctuations
         """
-        if repl != ' ':
-            self._text = self._text.translate(
-                dict(zip(PUNCTUATION, repl * len(PUNCTUATION))))
-        self._text = self._text.translate(UNICODE_PUNCTUATION)
+        self._text = self._text.translate(punc.get_punc_map(repl))
         return self
