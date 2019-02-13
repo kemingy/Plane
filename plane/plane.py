@@ -3,8 +3,6 @@ Plane class, support chain function calls.
 """
 
 import re
-import sys
-import unicodedata
 
 from plane.pattern import Token, ASCII_WORD
 from plane.punctuation import punc

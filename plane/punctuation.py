@@ -12,8 +12,8 @@ class Punctuation:
         Pd	Punctuation, Dash
         Ps	Punctuation, Open
         Pe	Punctuation, Close
-        Pi	Punctuation, Initial quote (may behave like Ps or Pe depending on usage)
-        Pf	Punctuation, Final quote (may behave like Ps or Pe depending on usage)
+        Pi	Punctuation, Initial quote (may behave like Ps or Pe)
+        Pf	Punctuation, Final quote (may behave like Ps or Pe)
         Po	Punctuation, Other
 
     Some chars are not included in punctuations. Such as: `+`, `^`, `$`, `~`.
