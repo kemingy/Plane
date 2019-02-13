@@ -16,6 +16,6 @@ package: clean
 	python3 setup.py sdist bdist_wheel
 
 publish: package
-	twine upload dist/
+	twine upload dist/*
 
 .PHONY: test doc
