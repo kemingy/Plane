@@ -1,5 +1,5 @@
 install:
-	pip install -e .
+	pip3 install -e .
 
 test:
 	py.test
@@ -7,7 +7,15 @@ test:
 doc:
 	cd docs && make html
 
-package:
-	python setup.py sdist bdist_wheel
+clean:
+	rm -rf build/ dist/ *.egg-info .pytest_cache
+	find . -name '*.pyc' -type f -exec rm -rf {} +
+	find . -name '__pycache__' -exec rm -rf {} +
 
-.PHONY: install test doc package
+package: clean
+	python3 setup.py sdist bdist_wheel
+
+publish: package
+	twine upload dist/
+
+.PHONY: test doc
