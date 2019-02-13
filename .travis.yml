@@ -8,11 +8,11 @@ install:
   - pip install -r requirements.txt
   - pip install -r requirements_docs.txt
   - pip install flake8
-  - make install
+  - pip install .
 
 script:
   - flake8 plane
-  - pytest
+  - py.test
 
 after_success:
   - make doc
