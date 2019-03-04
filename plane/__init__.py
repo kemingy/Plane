@@ -1,4 +1,4 @@
-from plane.punctuation import remove_punctuation  # noqa: F401
+from plane.punctuation import punc  # noqa: F401
 from plane.func import replace, extract, segment, build_new_regex  # noqa: F401
 from plane.plane import Plane  # noqa: F401
 from plane.pipeline import Pipeline  # noqa: F401
