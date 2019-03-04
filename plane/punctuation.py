@@ -1,5 +1,6 @@
 import sys
 import unicodedata
+import re
 
 
 class Punctuation:
@@ -24,6 +25,7 @@ class Punctuation:
         self.repl = ' '
         self.punc = None
         self.punc_map = {}
+        self.normalizer = None
 
     def get_punc_map(self, repl=' '):
         if not self.punc:
@@ -36,18 +38,74 @@ class Punctuation:
 
         return self.punc_map[repl]
 
+    def remove(self, text, repl=' '):
+        """
+        :param str text: input text
+
+        Remove all punctuations.
+
+        This methods use :class:`unicodedata`
+        (https://docs.python.org/3.6/library/unicodedata.html) to get all
+        the punctuations.
+        """
+        return text.translate(self.get_punc_map(repl))
+
+    def normalize(self, text):
+        """
+        :param str text: input text
+
+        Convert punctuations from other languages to English punctuations.
+        Not every punctuation is included.
+
+        - https://github.com/moses-smt/mosesdecoder/blob/master/scripts
+        - http://xahlee.info/comp/unicode_punctuation_symbols.html
+        - https://www.compart.com/en/unicode/category/Po
+        """
+        if not self.normalizer:
+            self.init_normalization()
+        return self.normalizer.sub(
+            lambda m: self.normelization[m.string[m.start():m.end()]], text)
+
+    def init_normalization(self):
+        if not self.normalizer:
+            self.normelization = {
+                '`': '\'',
+                '\'\'': '"',
+                '„': '"',
+                '–': '-',
+                '—': ' - ',
+                '´': '\'',
+                '‚': '"',
+                '´´': '"',
+                '…': '...',
+                # French quotes
+                '«': '"',
+                '»': '"',
+                # Chinese
+                '，': ',',
+                '。': '.',
+                '？': '?',
+                '！': '!',
+                '：': ':',
+                '（': '(',
+                '）': ')',
+                '【': '(',
+                '】': ')',
+                '《': '(',
+                '》': ')',
+                '「': '(',
+                '」': ')',
+                '『': '(',
+                '』': ')',
+                '’': '\'',
+                '‘': '\'',
+                '“': '"',
+                '”': '"',
+                '；': ';',
+                '〜': '~',
+            }
+            self.normalizer = re.compile('({})'.format(
+                '|'.join(map(re.escape, self.normelization.keys()))))
+
 
 punc = Punctuation()
-
-
-def remove_punctuation(text, repl=' '):
-    """
-    :param str text: input text
-
-    Remove all punctuations.
-
-    This methods use :class:`unicodedata`
-    (https://docs.python.org/3.6/library/unicodedata.html) to get all
-    the punctuations.
-    """
-    return text.translate(punc.get_punc_map(repl))
