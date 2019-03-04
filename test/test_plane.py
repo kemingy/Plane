@@ -31,3 +31,9 @@ def test_remove_punctuation():
 
     assert p.update(text).replace(EMAIL, '').remove_punctuation().text == \
         'You can send me an email at  '
+
+
+def test_normalize_punctuation():
+    t = '你读过那本《边城》吗？什么编程？！人生苦短，我用 Python。'
+    assert p.update(t).normalize_punctuation().text == \
+        '你读过那本(边城)吗?什么编程?!人生苦短,我用 Python.'

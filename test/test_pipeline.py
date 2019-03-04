@@ -1,4 +1,4 @@
-from plane import Pipeline, replace, extract, segment, remove_punctuation
+from plane import Pipeline, replace, extract, segment, punc
 from plane.pattern import EMAIL, TELEPHONE
 
 
@@ -30,7 +30,7 @@ def test_pipeline():
     assert list(pipeline(text)) == []
 
     pipeline = Pipeline(
-        remove_punctuation,
+        punc.remove,
         segment
     )
     assert pipeline('hello, world!') == ['hello', 'world']
