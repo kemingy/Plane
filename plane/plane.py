@@ -106,5 +106,12 @@ class Plane:
 
         remove all punctuations
         """
-        self._text = self._text.translate(punc.get_punc_map(repl))
+        self._text = punc.remove(self._text, repl)
+        return self
+
+    def normalize_punctuation(self):
+        """
+        normalize punctuations to English punctuations
+        """
+        self._text = punc.normalize(self.text)
         return self

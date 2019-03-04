@@ -105,29 +105,33 @@ You can create your own pattern with :func:`plane.func.build_new_regex`:
 replace all punctuations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`remove_punctuation` will replace all unicode punctuations to `' '` or something you send to this function as paramter `repl`.
+`punc.remove` will replace all unicode punctuations to `' '` or something you send to this function as paramter `repl`. `punc.normalize` will normalize some Unicode punctuations to English punctuations.
 
 **Attention**: '+', '^', '$', '~' and some chars are not punctuation.
 
 ::
 
-    from plane import remove_punctuation
+    from plane import punc
 
     text = 'Hello world!'
-    remove_punctuation(text)
+    punc.remove(text)
 
     >>> 'Hello world '
 
     # replace punctuation with special string
-    remove_punctuation(text, '<P>')
+    punc.remove(text, '<P>')
 
     >>> 'Hello world<P>'
 
+    # normalize punctuations
+    punc.normalize('你读过那本《边城》吗？什么编程？！人生苦短，我用 Python。')
+
+    >>> '你读过那本(边城)吗?什么编程?!人生苦短,我用 Python.'
 
 chain function calls
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Plane` contains `extract`, `replace`, `segment` and `remove_punctuation`, and these methods can be called in chain. Since `segment` returns list, it can only be called in the end of the chain.
+`Plane` contains `extract`, `replace`, `segment` and `punc.remove`, `punc.normalize`, and these methods can be called in chain. Since `segment` returns list, it can only be called in the end of the chain.
 
 `Plane.text` saves the result of processed text and `Plane.values` saves the result of extracted strings.
 

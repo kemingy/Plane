@@ -7,7 +7,7 @@
 
 ![plane(tool) from wikipedia](https://upload.wikimedia.org/wikipedia/commons/e/e3/Kanna2.gif)
 
-This package is used for extracting or replacing specific parts from text, like URL, Email, HTML tags, telephone numbers and so on. Or just remove all unicode punctuations.
+This package is used for extracting or replacing specific parts from text, like URL, Email, HTML tags, telephone numbers and so on. Also supports punctuation normalization and removement.
 
 See the full [Documents](https://kemingy.github.io/Plane/).
 
@@ -132,27 +132,32 @@ segment('你看起来guaiguai的。<EOS>')
 
 ### punctuation
 
-`remove_punctuation` will replace all unicode punctuations to `' '` or something you send to this function as paramter `repl`.
+`punc.remove` will replace all unicode punctuations to `' '` or something you send to this function as paramter `repl`. `punc.normalize` will normalize some Unicode punctuations to English punctuations.
 
 **Attention**: '+', '^', '$', '~' and some chars are not punctuation.
 
 ```python
-from plane import remove_punctuation
+from plane import punc
 
 text = 'Hello world!'
-remove_punctuation(text)
+punc.remove(text)
 
 >>> 'Hello world '
 
 # replace punctuation with special string
-remove_punctuation(text, '<P>')
+punc.remove(text, '<P>')
 
 >>> 'Hello world<P>'
+
+# normalize punctuations
+punc.normalize('你读过那本《边城》吗？什么编程？！人生苦短，我用 Python。')
+
+>>> '你读过那本(边城)吗?什么编程?!人生苦短,我用 Python.'
 ```
 
 ### Chain function
 
-`Plane` contains `extract`, `replace`, `segment` and `remove_punctuation`, and these methods can be called in chain. Since `segment` returns list, it can only be called in the end of the chain.
+`Plane` contains `extract`, `replace`, `segment` and `punc.remove`, `punc.normalize`, and these methods can be called in chain. Since `segment` returns list, it can only be called in the end of the chain.
 
 `Plane.text` saves the result of processed text and `Plane.values` saves the result of extracted strings.
 

@@ -72,6 +72,8 @@ TELEPHONE = Regex(
 )
 
 #: :code:`r(\s+)`
+#:
+#: This can remove all extra spaces.
 SPACE = Regex(
     'Space',
     r'\s+',
