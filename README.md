@@ -83,6 +83,8 @@ custom_regex = build_new_regex('my_regex', r'(\d{4})', '<my-replacement-tag>')
 
 Also, you can build new pattern from default patterns.
 
+**Attention**: this should only be used for language range.
+
 ```python
 from plane import extract, build_new_regex, CHINESE_WORDS
 ASCII = build_new_regex('ascii', r'[a-zA-Z0-9]+', ' ')
@@ -95,6 +97,13 @@ text = "自然语言处理太难了！who can help me? (╯▔🔺▔)╯"
 print(' '.join([t.value for t in list(extract(text, WORDS))]))
 
 >>> "自然语言处理太难了 who can help me"
+
+from plane import CHINESE, ENGLISH, NUMBER
+CN_EN_NUM = sum([CHINESE, ENGLISH, NUMBER])
+text = "佛是虚名，道亦妄立。एवं मया श्रुतम्। 1999 is not the end of the world. "
+print(' '.join([t.value for t in extract(text, CN_EN_NUM)]))
+
+>>> "佛是虚名，道亦妄立。 1999 is not the end of the world."
 ```
 
 Default Regex: [Details](https://github.com/Momingcoder/Plane/blob/master/plane/pattern.py)
