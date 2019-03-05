@@ -107,6 +107,10 @@ Default Regex: [Details](https://github.com/Momingcoder/Plane/blob/master/plane/
 * `ASCII_WORD`: English word, numbers, `<tag>` and so on.
 * `CHINESE`: all Chinese characters (only Han and punctuations)
 * `CJK`: all Chinese, Japanese, Korean(CJK) characters and punctuations
+* `THAI`: all Thai and punctuations
+* `VIETNAMESE`: all Vietnames and punctuations
+* `ENGLISH`: all English chars and punctuations
+* `NUMBER`: 0-9
 
 Regex name | replace
 -----------|---------
