@@ -12,6 +12,7 @@ setup(
     version='0.1.6',
     description='A lib for text preprocessing',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author='Keming Yang',
     author_email='kemingy94@gmail.com',
     license='MIT',
