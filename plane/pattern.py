@@ -22,12 +22,19 @@ class Regex(namedtuple(
 
         :param :class:`.Regex` other: another Regex instance
         """
-        return Regex(
-            '{}_{}'.format(self.name, other.name),
-            '{}|{}'.format(self.pattern, other.pattern),
-            self.repl if self.repl == other.repl else '{}_{}'
-                .format(self.repl, other.repl)
-        )
+        if isinstance(other, Regex):
+            return Regex(
+                '{}_{}'.format(self.name, other.name),
+                '{}|{}'.format(self.pattern, other.pattern),
+                self.repl if self.repl == other.repl else '{}_{}'
+                    .format(self.repl, other.repl)
+            )
+        return self
+
+    def __radd__(self, other):
+        """Trait `sum`
+        """
+        return self.__add__(other)
 
 
 class Token(namedtuple(
