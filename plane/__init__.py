@@ -6,4 +6,4 @@ from plane.pattern import HTML, EMAIL, SPACE, TELEPHONE, URL  # noqa: F401
 from plane.pattern import ASCII_WORD, CHINESE, CJK, CHINESE_WORDS  # noqa: F401
 from plane.pattern import ENGLISH, VIETNAMESE, THAI, NUMBER  # noqa: F401
 
-__version__ = '0.1.7'
+__version__ = '0.1.8'
