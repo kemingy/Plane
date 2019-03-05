@@ -18,6 +18,10 @@ class Regex(namedtuple(
     """
 
     def __add__(self, other):
+        """This method should only be used for language range.
+
+        :param :class:`.Regex` other: another Regex instance
+        """
         return Regex(
             '{}_{}'.format(self.name, other.name),
             '{}|{}'.format(self.pattern, other.pattern),
@@ -92,6 +96,62 @@ HTML = Regex(
 ASCII_WORD = Regex(
     'ASCII_word',
     r'[<$#&]?[a-zA-Z0-9_.-]*\'?[a-zA-Z0-9]+[%>]?',
+    ' ',
+)
+
+#: English words, punctuations, numbers are not included
+ENGLISH = Regex(
+    'English',
+    r'[!-/:-~]+',
+    ' '
+)
+
+#: Numbers
+NUMBER = Regex(
+    'Numbers',
+    r'[0-9]+',
+    ' '
+)
+
+#: Vietnamese with punctuations
+#:
+#: - https://stackoverflow.com/questions/37579692/unicode-range-for-vietnamese
+#: - http://vietunicode.sourceforge.net/charset/
+VIETNAMESE = Regex(
+    'Vietnamese',
+    r'[' +
+    ''.join([r'\U{:0>8X}-\U{:0>8X}'.format(begin, end) for begin, end in [
+        (0x0021, 0x0080),  # a-zA-Z0-9 and some punctuations
+        (0x00C0, 0x00C3),
+        (0x00C8, 0x00CA),
+        (0x00CC, 0x00CD),
+        (0x00D2, 0x00D5),
+        (0x00D9, 0x00DA),
+        (0x00E0, 0x00E3),
+        (0x00E8, 0x00EA),
+        (0x00EC, 0x00ED),
+        (0x00F2, 0x00F5),
+        (0x00F9, 0x00FA),
+        (0x0102, 0x0103),
+        (0x0110, 0x0111),
+        (0x0128, 0x0129),
+        (0x0168, 0x0169),
+        (0x01A0, 0x01B0),
+        (0x1EA0, 0x1EF9),
+        (0x02C6, 0x0323),
+    ]]) + ''.join([r'\U{:0>8X}'.format(x) for x in (0x00D0, 0x00DD, 0x00FD)])
+        + r']+',
+    ' ',
+)
+
+#: Thai: https://en.wikipedia.org/wiki/Thai_(Unicode_block) with punctuations
+THAI = Regex(
+    'Thai',
+    r'[' +
+    ''.join([r'\U{:0>8X}-\U{:0>8X}'.format(begin, end) for begin, end in [
+        (0x0E01, 0x0E3A),
+        (0x0E3F, 0x0E5B),
+    ]]) + r']+',
     ' ',
 )
 
