@@ -29,7 +29,7 @@ python setup.py install
 
 ## Features
 
-* only depend on `re`
+* no other dependencies
 * build-in regex patterns: `plane.pattern.Regex`
 * custom regex patterns
 * pattern combination
