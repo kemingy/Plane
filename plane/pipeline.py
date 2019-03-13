@@ -57,7 +57,7 @@ class Pipeline:
             >> ["My", "email", "is", "<Email>"]
         """
         if 'text' in signature(func).parameters:
-            def f(text): return func(text, *args, *kwargs)
+            def f(text): return func(text, *args, **kwargs)
         else:
             f = func(*args, **kwargs)
         self.functions.append(f)
