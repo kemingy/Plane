@@ -4,7 +4,7 @@ Plane class, support chain function calls.
 
 from plane.pattern import Token, ASCII_WORD
 from plane.punctuation import punc
-from plane.func import compile_regex
+from plane.func import compile_regex, PATTERNS
 
 
 class Plane:
@@ -31,7 +31,7 @@ class Plane:
 
         Extract tokens, results is saved in :class:`Plane.values`
         """
-        regex = compile_regex(regex)
+        regex = PATTERNS.get(regex.name, compile_regex(regex))
         values = []
         for mo in regex.finditer(self._text):
             name = mo.lastgroup
@@ -86,7 +86,7 @@ class Plane:
         Segment sentence.
         Chinese words will be split into char and English words will be keeped.
         """
-        regex = compile_regex(regex)
+        regex = PATTERNS.get(regex.name, compile_regex(regex))
         result, start = [], 0
         for t in regex.finditer(self._text):
             result.extend(
