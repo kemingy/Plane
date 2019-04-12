@@ -14,7 +14,7 @@ from plane.pattern import (
 PATTERNS = dict([p.name, p] for p in DEFAULT_PATTERNS)
 
 
-def build_new_regex(name, regex, repl=''):
+def build_new_regex(name, regex, flag=0, repl=' '):
     """
     :param str name: regex pattern name
     :param str regex: regex
@@ -24,16 +24,16 @@ def build_new_regex(name, regex, repl=''):
     :code:`'_'`
     """
     name = name.replace(' ', '_')
-    regex = Regex(name, regex, repl)
+    regex = Regex(name, regex, flag, repl)
     PATTERNS[name] = regex
     return regex
 
 
-def build_regex(regex):
+def compile_regex(regex):
     assert isinstance(regex, Regex)
-
-    value = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern))
-    return value
+    expression = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern),
+                            regex.flag)
+    return expression
 
 
 def extract(text, pattern):
@@ -43,7 +43,7 @@ def extract(text, pattern):
 
     Extract tokens with regex pattern.
     """
-    regex = build_regex(pattern)
+    regex = compile_regex(pattern)
     for mo in regex.finditer(text):
         name = mo.lastgroup
         value = mo.group(name)
@@ -79,7 +79,7 @@ def segment(text, pattern=ASCII_WORD):
     Segment sentence.
     Chinese words will be split into char and English words will be keeped.
     """
-    regex = build_regex(pattern)
+    regex = compile_regex(pattern)
     result = []
     start = 0
     for t in regex.finditer(text):

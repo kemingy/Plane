@@ -21,11 +21,47 @@ class Punctuation:
 
     You can use :class:`Plane.pattern` to process these chars.
     """
-    def __init__(self):
+    def __init__(self, normalization=None):
         self.repl = ' '
         self.punc = None
         self.punc_map = {}
         self.normalizer = None
+        self.normelization = normalization or {
+            '`': '\'',
+            '\'\'': '"',
+            '„': '"',
+            '–': '-',
+            '—': ' - ',
+            '´': '\'',
+            '‚': '"',
+            '´´': '"',
+            '…': '...',
+            # French quotes
+            '«': '"',
+            '»': '"',
+            # Chinese
+            '，': ',',
+            '。': '.',
+            '？': '?',
+            '！': '!',
+            '：': ':',
+            '（': '(',
+            '）': ')',
+            '【': '(',
+            '】': ')',
+            '《': '(',
+            '》': ')',
+            '「': '(',
+            '」': ')',
+            '『': '(',
+            '』': ')',
+            '’': '\'',
+            '‘': '\'',
+            '“': '"',
+            '”': '"',
+            '；': ';',
+            '〜': '~',
+        }
 
     def get_punc_map(self, repl=' '):
         if not self.punc:
@@ -68,42 +104,6 @@ class Punctuation:
 
     def init_normalization(self):
         if not self.normalizer:
-            self.normelization = {
-                '`': '\'',
-                '\'\'': '"',
-                '„': '"',
-                '–': '-',
-                '—': ' - ',
-                '´': '\'',
-                '‚': '"',
-                '´´': '"',
-                '…': '...',
-                # French quotes
-                '«': '"',
-                '»': '"',
-                # Chinese
-                '，': ',',
-                '。': '.',
-                '？': '?',
-                '！': '!',
-                '：': ':',
-                '（': '(',
-                '）': ')',
-                '【': '(',
-                '】': ')',
-                '《': '(',
-                '》': ')',
-                '「': '(',
-                '」': ')',
-                '『': '(',
-                '』': ')',
-                '’': '\'',
-                '‘': '\'',
-                '“': '"',
-                '”': '"',
-                '；': ';',
-                '〜': '~',
-            }
             self.normalizer = re.compile('({})'.format(
                 '|'.join(map(re.escape, self.normelization.keys()))))
 
