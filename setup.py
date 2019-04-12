@@ -9,7 +9,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='plane',
-    version='0.1.8',
+    version='0.1.9',
     description='A lib for text preprocessing',
     long_description=long_description,
     long_description_content_type='text/markdown',
