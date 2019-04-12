@@ -27,14 +27,17 @@ def test_url():
         'http://www.guokr.com/如何',
         'For more information about Python Re, check'
         ' https://docs.python.org/3/library/re.html',
+        'HTTPS://github.com/ try the upper case http://u.me.',
     ]
     urls = [
         ['http://www.guokr.com/'],
         ['https://docs.python.org/3/library/re.html'],
+        ['HTTPS://github.com/', 'http://u.me.'],
     ]
     expect = [
         '<URL>如何',
         'For more information about Python Re, check <URL>',
+        '<URL> try the upper case <URL>',
     ]
     assert_list(
         urls,
@@ -172,7 +175,7 @@ Speed = 3×10^8 ㎞/s.
 
 
 def test_pattern_add():
-    ASCII = build_new_regex('ascii', r'[a-zA-Z0-9]+', ' ')
+    ASCII = build_new_regex('ascii', r'[a-zA-Z0-9]+')
     WORDS = ASCII + CHINESE_WORDS
     text = "自然语言处理太难了！who can help me? (╯▔🔺▔)╯"
     expect = "自然语言处理太难了 who can help me"
