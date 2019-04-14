@@ -1,4 +1,5 @@
 from collections import namedtuple
+import re
 
 
 class Regex(namedtuple(
@@ -6,6 +7,7 @@ class Regex(namedtuple(
     [
         'name',
         'pattern',
+        'flag',
         'repl',
     ]
 )):
@@ -16,6 +18,10 @@ class Regex(namedtuple(
 
     regex pattern
     """
+    __slots__ = ()
+
+    def __new__(cls, name, pattern, flag=0, repl=' '):
+        return super(Regex, cls).__new__(cls, name, pattern, flag, repl)
 
     def __add__(self, other):
         """This method should only be used for language range.
@@ -26,6 +32,7 @@ class Regex(namedtuple(
             return Regex(
                 '{}_{}'.format(self.name, other.name),
                 '{}|{}'.format(self.pattern, other.pattern),
+                self.flag | other.flag,
                 self.repl if self.repl == other.repl else '{}_{}'
                     .format(self.repl, other.repl)
             )
@@ -61,7 +68,8 @@ class Token(namedtuple(
 #: Only support ASCII chars.
 URL = Regex(
     'URL',
-    r'(?i)https?:\/\/[!-~]+',
+    r'https?:\/\/[!-~]+',
+    re.I,
     '<URL>',
 )
 
@@ -69,6 +77,7 @@ URL = Regex(
 EMAIL = Regex(
     'Email',
     r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+',
+    0,
     '<Email>',
 )
 
@@ -79,6 +88,7 @@ EMAIL = Regex(
 TELEPHONE = Regex(
     'Telephone',
     r'\d{3}[ +.-]?\d{4}[ +.-]?\d{4}',
+    0,
     '<Telephone>',
 )
 
@@ -88,14 +98,13 @@ TELEPHONE = Regex(
 SPACE = Regex(
     'Space',
     r'\s+',
-    ' ',
 )
 
 #: HTML tags includes 'script', 'style' and others.
 HTML = Regex(
     'HTML',
-    r'(?s)<script.*?>.*?</script>|<style.*?>.*?</style>|<.*?>',
-    ' ',
+    r'<script.*?>.*?</script>|<style.*?>.*?</style>|<.*?>',
+    re.S,
 )
 
 #: English words, numbers, like 'hash', '3.14', '$100', '<EOS>'
@@ -103,21 +112,18 @@ HTML = Regex(
 ASCII_WORD = Regex(
     'ASCII_word',
     r'[<$#&]?[a-zA-Z0-9_.-]*\'?[a-zA-Z0-9]+[%>]?',
-    ' ',
 )
 
 #: English words, punctuations, numbers are not included
 ENGLISH = Regex(
     'English',
     r'[!-/:-~]+',
-    ' '
 )
 
 #: Numbers
 NUMBER = Regex(
     'Numbers',
     r'[0-9]+',
-    ' '
 )
 
 #: Vietnamese with punctuations
@@ -148,7 +154,6 @@ VIETNAMESE = Regex(
         (0x02C6, 0x0323),
     ]]) + ''.join([r'\U{:0>8X}'.format(x) for x in (0x00D0, 0x00DD, 0x00FD)])
         + r']+',
-    ' ',
 )
 
 #: Thai: https://en.wikipedia.org/wiki/Thai_(Unicode_block) with punctuations
@@ -159,7 +164,6 @@ THAI = Regex(
         (0x0E01, 0x0E3A),
         (0x0E3F, 0x0E5B),
     ]]) + r']+',
-    ' ',
 )
 
 #: All Chinese words without punctuations.
@@ -175,7 +179,6 @@ CHINESE_WORDS = Regex(
         (0x2B820, 0x2CEAF),     # CJK Unified Ideographs Extension E
         (0x2CEB0, 0x2EBEF),     # CJK Unified Ideographs Extension F
     ]]) + r']+',
-    ' ',
 )
 
 #: All Chinese words includes most punctuations.
@@ -194,7 +197,6 @@ CHINESE = Regex(
         (0xFE30, 0xFE4F),       # CJK Compatibility Forms
         (0xFF00, 0xFFEF),       # Halfwidth and Fullwidth Forms
     ]]) + r']+',
-    ' ',
 )
 
 #: All CJK chars.
@@ -222,7 +224,6 @@ CJK = Regex(
         (0x1F200, 0x1F2FF),     # Enclosed Ideographic Supplement
         (0x2F800, 0x2FA1F),     # CJK Compatibility Ideographs Supplement
     ]]) + r']+',
-    ' ',
 )
 
 DEFAULT_PATTERNS = [
@@ -234,4 +235,9 @@ DEFAULT_PATTERNS = [
     ASCII_WORD,
     CHINESE,
     CJK,
+    ENGLISH,
+    NUMBER,
+    THAI,
+    VIETNAMESE,
+    CHINESE_WORDS,
 ]
