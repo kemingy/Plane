@@ -11,10 +11,8 @@ from plane.pattern import (
     ASCII_WORD,
 )
 
-PATTERNS = dict([p.name, p] for p in DEFAULT_PATTERNS)
 
-
-def build_new_regex(name, regex, repl=''):
+def build_new_regex(name, regex, flag=0, repl=' '):
     """
     :param str name: regex pattern name
     :param str regex: regex
@@ -24,26 +22,29 @@ def build_new_regex(name, regex, repl=''):
     :code:`'_'`
     """
     name = name.replace(' ', '_')
-    regex = Regex(name, regex, repl)
-    PATTERNS[name] = regex
+    regex = Regex(name, regex, flag, repl)
+    PATTERNS[name] = compile_regex(regex)
     return regex
 
 
-def build_regex(regex):
+def compile_regex(regex):
     assert isinstance(regex, Regex)
+    expression = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern),
+                            regex.flag)
+    return expression
 
-    value = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern))
-    return value
+
+PATTERNS = dict([p.name, compile_regex(p)] for p in DEFAULT_PATTERNS)
 
 
-def extract(text, pattern):
+def extract(text, regex):
     """
     :param str text: text
     :param Regex pattern: :class:`plane.pattern.Regex`
 
     Extract tokens with regex pattern.
     """
-    regex = build_regex(pattern)
+    regex = PATTERNS.get(regex.name, compile_regex(regex))
     for mo in regex.finditer(text):
         name = mo.lastgroup
         value = mo.group(name)
@@ -71,7 +72,7 @@ def replace(text, pattern, repl=None):
     return result
 
 
-def segment(text, pattern=ASCII_WORD):
+def segment(text, regex=ASCII_WORD):
     """
     :param str text: text
     :param Regex pattern: :class:`plane.pattern.Regex`
@@ -79,7 +80,7 @@ def segment(text, pattern=ASCII_WORD):
     Segment sentence.
     Chinese words will be split into char and English words will be keeped.
     """
-    regex = build_regex(pattern)
+    regex = PATTERNS.get(regex.name, compile_regex(regex))
     result = []
     start = 0
     for t in regex.finditer(text):
