@@ -20,6 +20,8 @@ class Punctuation:
     Some chars are not included in punctuations. Such as: `+`, `^`, `$`, `~`.
 
     You can use :class:`Plane.pattern` to process these chars.
+
+    :param dict normalization: punctuation normalization map
     """
     def __init__(self, normalization=None):
         self.repl = ' '

@@ -98,7 +98,7 @@ class Plane:
                        if char != ' '])
         return result
 
-    def remove_punctuation(self, repl=' '):
+    def remove_punctuation(self, repl=' ', punc=punc):
         """
         :param str repl: replacement for regex, if setted, default value will \
         be overwritten
@@ -108,7 +108,7 @@ class Plane:
         self._text = punc.remove(self._text, repl)
         return self
 
-    def normalize_punctuation(self):
+    def normalize_punctuation(self, punc=punc):
         """
         normalize punctuations to English punctuations
         """
