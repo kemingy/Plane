@@ -24,5 +24,5 @@ setup(
     install_requires=[],
     python_requires='>=3',
     packages=find_packages(exclude=['test']),
-    url='https://github.com/Momingcoder/Plane',
+    url='https://github.com/kemingy/Plane',
 )
