@@ -1,4 +1,4 @@
-from plane import punc
+from plane import punc, Punctuation
 
 
 def test_punctuation():
@@ -20,3 +20,9 @@ def test_punctuation_with_repl():
 def test_punctuation_normalization():
     text = '你读过那本《边城》吗？什么编程？！人生苦短，我用 Python。'
     assert punc.normalize(text) == '你读过那本(边城)吗?什么编程?!人生苦短,我用 Python.'
+
+
+def test_custom_punc():
+    punc = Punctuation(normalization={'\'': '@', '.': '@', ',': '@'})
+    assert punc.remove('hi, are you ok?') == 'hi  are you ok '
+    assert punc.normalize("hi, welcome to xi'an.") == 'hi@ welcome to xi@an@'

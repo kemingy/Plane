@@ -1,4 +1,4 @@
-from plane import Plane
+from plane import Plane, Punctuation
 from plane.pattern import EMAIL
 
 p = Plane()
@@ -37,3 +37,7 @@ def test_normalize_punctuation():
     t = '你读过那本《边城》吗？什么编程？！人生苦短，我用 Python。'
     assert p.update(t).normalize_punctuation().text == \
         '你读过那本(边城)吗?什么编程?!人生苦短,我用 Python.'
+
+    punc = Punctuation(normalization={'《': '@', '》': '@', 'Python': 'Rust'})
+    assert p.update(t).normalize_punctuation(punc).text == \
+        '你读过那本@边城@吗？什么编程？！人生苦短，我用 Rust。'
