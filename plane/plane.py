@@ -2,9 +2,9 @@
 Plane class, support chain function calls.
 """
 
-from plane.pattern import Token, ASCII_WORD
+from plane.func import PATTERNS, compile_regex
+from plane.pattern import ASCII_WORD, Token
 from plane.punctuation import punc
-from plane.func import compile_regex, PATTERNS
 
 
 class Plane:
@@ -12,8 +12,9 @@ class Plane:
     Init :class:`Plane.text` and :class:`Plane.values` when the instance is
     created.
     """
+
     def __init__(self):
-        self._text = ''
+        self._text = ""
         self._values = []
 
     @property
@@ -53,10 +54,10 @@ class Plane:
         Replace matched :class:`regex` patterns with :class:`repl`.
         """
         repl = repl if repl is not None else regex.repl
-        text, start = '', 0
+        text, start = "", 0
 
         for t in self.extract(regex, result=True):
-            text += self._text[start:t.start] + repl
+            text += self._text[start : t.start] + repl
             start = t.end
         text += self._text[start:]
 
@@ -72,7 +73,7 @@ class Plane:
         Init `Plane.text` and `Plane.values`.
         """
         if not isinstance(text, str):
-            raise TypeError('Only support string.')
+            raise TypeError("Only support string.")
 
         self._text = text
         self._values = []
@@ -90,15 +91,14 @@ class Plane:
         result, start = [], 0
         for t in regex.finditer(self._text):
             result.extend(
-                [char for char in list(self._text[start:t.start()])
-                 if char != ' '])
-            result.append(self._text[t.start():t.end()])
+                [char for char in list(self._text[start : t.start()]) if char != " "]
+            )
+            result.append(self._text[t.start() : t.end()])
             start = t.end()
-        result.extend([char for char in list(self._text[start:])
-                       if char != ' '])
+        result.extend([char for char in list(self._text[start:]) if char != " "])
         return result
 
-    def remove_punctuation(self, repl=' ', punc=punc):
+    def remove_punctuation(self, repl=" ", punc=punc):
         """
         :param str repl: replacement for regex, if setted, default value will \
         be overwritten

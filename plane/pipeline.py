@@ -6,18 +6,19 @@ from plane.pattern import Token
 
 class Pipeline:
     """
-        Initialize pipeline with functions.
-        For example:
-        ::
+    Initialize pipeline with functions.
+    For example:
+    ::
 
-            pl = Pipeline(
-                lambda text: replace(text, EMAIL),
-                segment,
-            )
-            pl("My email is abc@hello.com")
+        pl = Pipeline(
+            lambda text: replace(text, EMAIL),
+            segment,
+        )
+        pl("My email is abc@hello.com")
 
-            >> ["My", "email", "is", "<Email>"]
+        >> ["My", "email", "is", "<Email>"]
     """
+
     def __init__(self, *functions):
         self.functions = []
         for func in functions:
@@ -38,8 +39,10 @@ class Pipeline:
                     text = " ".join([t.value for t in text])
                 else:
                     raise TypeError(
-                        "expected string or Token in list, but get {}"
-                        .format(type(text[0])))
+                        "expected string or Token in list, but get {}".format(
+                            type(text[0])
+                        )
+                    )
 
             text = func(text)
         return text
@@ -56,8 +59,11 @@ class Pipeline:
 
             >> ["My", "email", "is", "<Email>"]
         """
-        if 'text' in signature(func).parameters:
-            def f(text): return func(text, *args, **kwargs)
+        if "text" in signature(func).parameters:
+
+            def f(text):
+                return func(text, *args, **kwargs)
+
         else:
             f = func(*args, **kwargs)
         self.functions.append(f)

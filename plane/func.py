@@ -4,15 +4,10 @@ Basic :meth:`match`, :meth:`extract`, :meth:`segment` function.
 
 import re
 
-from plane.pattern import (
-    Regex,
-    Token,
-    DEFAULT_PATTERNS,
-    ASCII_WORD,
-)
+from plane.pattern import ASCII_WORD, DEFAULT_PATTERNS, Regex, Token
 
 
-def build_new_regex(name, regex, flag=0, repl=' '):
+def build_new_regex(name, regex, flag=0, repl=" "):
     """
     :param str name: regex pattern name
     :param str regex: regex
@@ -21,7 +16,7 @@ def build_new_regex(name, regex, flag=0, repl=' '):
     build regex pattern, space :code:`' '` in name will be replaced by
     :code:`'_'`
     """
-    name = name.replace(' ', '_')
+    name = name.replace(" ", "_")
     regex = Regex(name, regex, flag, repl)
     PATTERNS[name] = compile_regex(regex)
     return regex
@@ -29,8 +24,7 @@ def build_new_regex(name, regex, flag=0, repl=' '):
 
 def compile_regex(regex):
     assert isinstance(regex, Regex)
-    expression = re.compile('(?P<%s>%s)' % (regex.name, regex.pattern),
-                            regex.flag)
+    expression = re.compile("(?P<%s>%s)" % (regex.name, regex.pattern), regex.flag)
     return expression
 
 
@@ -61,11 +55,11 @@ def replace(text, pattern, repl=None):
     Replace matched tokens with `repl`.
     """
     tokens = extract(text, pattern)
-    result = ''
+    result = ""
     start = 0
     repl = repl if repl is not None else pattern.repl
     for t in tokens:
-        result += text[start:t.start] + repl
+        result += text[start : t.start] + repl
         start = t.end
     result += text[start:]
 
@@ -84,10 +78,8 @@ def segment(text, regex=ASCII_WORD):
     result = []
     start = 0
     for t in regex.finditer(text):
-        result.extend(
-            [char for char in list(text[start:t.start()])
-                if char != ' '])
-        result.append(text[t.start():t.end()])
+        result.extend([char for char in list(text[start : t.start()]) if char != " "])
+        result.append(text[t.start() : t.end()])
         start = t.end()
-    result.extend([char for char in list(text[start:]) if char != ' '])
+    result.extend([char for char in list(text[start:]) if char != " "])
     return result

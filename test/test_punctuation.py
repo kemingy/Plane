@@ -1,28 +1,28 @@
-from plane import punc, Punctuation
+from plane import Punctuation, punc
 
 
 def test_punctuation():
     # ASCII
-    text = 'Hello World!'
-    assert punc.remove(text) == 'Hello World '
+    text = "Hello World!"
+    assert punc.remove(text) == "Hello World "
 
     # Chinese
-    text = '你瞅啥？瞅你咋地！'
-    assert punc.remove(text) == '你瞅啥 瞅你咋地 '
+    text = "你瞅啥？瞅你咋地！"
+    assert punc.remove(text) == "你瞅啥 瞅你咋地 "
 
 
 def test_punctuation_with_repl():
-    text = 'Hello, you are so c!@#%&*()_-l!'
-    repl = 'o'
-    assert punc.remove(text, repl) == 'Helloo you are so coooooooooolo'
+    text = "Hello, you are so c!@#%&*()_-l!"
+    repl = "o"
+    assert punc.remove(text, repl) == "Helloo you are so coooooooooolo"
 
 
 def test_punctuation_normalization():
-    text = '你读过那本《边城》吗？什么编程？！人生苦短，我用 Python。'
-    assert punc.normalize(text) == '你读过那本(边城)吗?什么编程?!人生苦短,我用 Python.'
+    text = "你读过那本《边城》吗？什么编程？！人生苦短，我用 Python。"
+    assert punc.normalize(text) == "你读过那本(边城)吗?什么编程?!人生苦短,我用 Python."
 
 
 def test_custom_punc():
-    punc = Punctuation(normalization={'\'': '@', '.': '@', ',': '@'})
-    assert punc.remove('hi, are you ok?') == 'hi  are you ok '
-    assert punc.normalize("hi, welcome to xi'an.") == 'hi@ welcome to xi@an@'
+    punc = Punctuation(normalization={"'": "@", ".": "@", ",": "@"})
+    assert punc.remove("hi, are you ok?") == "hi  are you ok "
+    assert punc.normalize("hi, welcome to xi'an.") == "hi@ welcome to xi@an@"
