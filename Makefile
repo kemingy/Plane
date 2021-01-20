@@ -3,7 +3,7 @@ check: lint test
 SOURCE_FILES=plane test setup.py
 
 install:
-	pip install -e .[flask,falcon,starlette,dev]
+	pip install -e .[dev]
 
 test:
 	pytest test -vv

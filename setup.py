@@ -23,6 +23,15 @@ setup(
         "Programming Language :: Python :: 3.6",
     ],
     install_requires=[],
+    extras_require={
+        "dev": [
+            "pytest>=6",
+            "flake8>=3.8",
+            "black>=20.8b1",
+            "isort>=5.6",
+            "autoflake>=1.4",
+        ],
+    },
     python_requires=">=3",
     packages=find_packages(exclude=["test"]),
     url="https://github.com/kemingy/Plane",
