@@ -131,6 +131,13 @@ NUMBER = Regex(
     r"[0-9]+",
 )
 
+#: BraSCII https://en.wikipedia.org/wiki/BraSCII
+BraSCII = Regex(
+    "BraSCII",
+    r"[!-/:-~\U{:0>8X}-\U{:0>8X}]+".format(0x00C0, 0x00FF),
+)
+
+
 #: Vietnamese with punctuations
 #:
 #: - https://stackoverflow.com/questions/37579692/unicode-range-for-vietnamese
@@ -271,6 +278,7 @@ DEFAULT_PATTERNS = [
     CHINESE,
     CJK,
     ENGLISH,
+    BraSCII,
     NUMBER,
     THAI,
     VIETNAMESE,

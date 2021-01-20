@@ -13,6 +13,7 @@ from plane.pattern import (  # noqa: F401
     THAI,
     URL,
     VIETNAMESE,
+    BraSCII,
 )
 from plane.pipeline import Pipeline  # noqa: F401
 from plane.plane import Plane  # noqa: F401
