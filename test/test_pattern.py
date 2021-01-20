@@ -13,6 +13,7 @@ from plane.pattern import (
     THAI,
     URL,
     VIETNAMESE,
+    BraSCII,
 )
 
 
@@ -194,3 +195,9 @@ def test_number():
     text = "2012 is not the end of world. So does 1999."
     expect = "2012 1999"
     assert " ".join([t.value for t in extract(text, NUMBER)]) == expect
+
+
+def test_brascii():
+    text = "1234 Código Brasileiro para Intercâmbio de Informação 4321"
+    expect = "Código Brasileiro para Intercâmbio de Informação"
+    assert " ".join([t.value for t in extract(text, BraSCII)]) == expect
