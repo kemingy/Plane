@@ -1,6 +1,9 @@
 # Plane
 
-[![Build Status](https://travis-ci.org/kemingy/Plane.svg?branch=master)](https://travis-ci.org/kemingy/Plane)
+[![GitHub Actions](https://github.com/kemingy/plane/workflows/Python%20package/badge.svg)](https://github.com/kemingy/plane/actions)
+[![pypi](https://img.shields.io/pypi/v/plane.svg)](https://pypi.python.org/pypi/plane)
+[![versions](https://img.shields.io/pypi/pyversions/plane.svg)](https://github.com/kemingy/plane)
+[![Python document](https://github.com/kemingy/plane/workflows/Python%20document/badge.svg)](https://kemingy.github.io/plane/)
 
 > **Plane** is a tool for shaping wood using muscle power to force the cutting blade over the wood surface.  
 > *from [Wikipedia](https://en.wikipedia.org/wiki/Plane_(tool))*
