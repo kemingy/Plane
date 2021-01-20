@@ -1,8 +1,12 @@
+check: lint test
+
+SOURCE_FILES=plane test setup.py
+
 install:
-	pip3 install -e .
+	pip install -e .[flask,falcon,starlette,dev]
 
 test:
-	py.test test -vv
+	pytest test -vv
 
 doc:
 	cd docs && make html
@@ -13,9 +17,19 @@ clean:
 	find . -name '__pycache__' -exec rm -rf {} +
 
 package: clean
-	python3 setup.py sdist bdist_wheel
+	python setup.py sdist bdist_wheel
 
 publish: package
 	twine upload dist/*
+
+format:
+	autoflake --in-place --recursive ${SOURCE_FILES}
+	isort --project=spectree ${SOURCE_FILES}
+	black ${SOURCE_FILES}
+
+lint:
+	isort --check --diff --project=spectree ${SOURCE_FILES}
+	black --check --diff ${SOURCE_FILES}
+	flake8 ${SOURCE_FILES} --count --show-source --statistics
 
 .PHONY: test doc
