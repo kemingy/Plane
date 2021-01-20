@@ -1,6 +1,6 @@
+import re
 import sys
 import unicodedata
-import re
 
 
 class Punctuation:
@@ -9,13 +9,13 @@ class Punctuation:
     Abbr. Description
     ::
 
-        Pc	Punctuation, Connector
-        Pd	Punctuation, Dash
-        Ps	Punctuation, Open
-        Pe	Punctuation, Close
-        Pi	Punctuation, Initial quote (may behave like Ps or Pe)
-        Pf	Punctuation, Final quote (may behave like Ps or Pe)
-        Po	Punctuation, Other
+        Pc - Punctuation, Connector
+        Pd - Punctuation, Dash
+        Ps - Punctuation, Open
+        Pe - Punctuation, Close
+        Pi - Punctuation, Initial quote (may behave like Ps or Pe)
+        Pf - Punctuation, Final quote (may behave like Ps or Pe)
+        Po - Punctuation, Other
 
     Some chars are not included in punctuations. Such as: `+`, `^`, `$`, `~`.
 
@@ -23,60 +23,62 @@ class Punctuation:
 
     :param dict normalization: punctuation normalization map
     """
+
     def __init__(self, normalization=None):
-        self.repl = ' '
+        self.repl = " "
         self.punc = None
         self.punc_map = {}
         self.normalizer = None
         self.normelization = normalization or {
-            '`': '\'',
-            '\'\'': '"',
-            '„': '"',
-            '–': '-',
-            '—': ' - ',
-            '´': '\'',
-            '‚': '"',
-            '´´': '"',
-            '…': '...',
+            "`": "'",
+            "''": '"',
+            "„": '"',
+            "–": "-",
+            "—": " - ",
+            "´": "'",
+            "‚": '"',
+            "´´": '"',
+            "…": "...",
             # French quotes
-            '«': '"',
-            '»': '"',
+            "«": '"',
+            "»": '"',
             # Chinese
-            '，': ',',
-            '。': '.',
-            '？': '?',
-            '！': '!',
-            '：': ':',
-            '（': '(',
-            '）': ')',
-            '【': '(',
-            '】': ')',
-            '《': '(',
-            '》': ')',
-            '「': '(',
-            '」': ')',
-            '『': '(',
-            '』': ')',
-            '’': '\'',
-            '‘': '\'',
-            '“': '"',
-            '”': '"',
-            '；': ';',
-            '〜': '~',
+            "，": ",",
+            "。": ".",
+            "？": "?",
+            "！": "!",
+            "：": ":",
+            "（": "(",
+            "）": ")",
+            "【": "(",
+            "】": ")",
+            "《": "(",
+            "》": ")",
+            "「": "(",
+            "」": ")",
+            "『": "(",
+            "』": ")",
+            "’": "'",
+            "‘": "'",
+            "“": '"',
+            "”": '"',
+            "；": ";",
+            "〜": "~",
         }
 
-    def get_punc_map(self, repl=' '):
+    def get_punc_map(self, repl=" "):
         if not self.punc:
             self.punc = [
-                c for c in range(sys.maxunicode)
-                if unicodedata.category(chr(c)).startswith('P')
+                c
+                for c in range(sys.maxunicode)
+                if unicodedata.category(chr(c)).startswith("P")
             ]
         if repl not in self.punc_map:
             self.punc_map[repl] = dict(zip(self.punc, repl * len(self.punc)))
 
         return self.punc_map[repl]
 
-    def remove(self, text, repl=' '):
+    def remove(self, text, repl=" "):
         """
         :param str text: input text
 
@@ -102,12 +104,14 @@ class Punctuation:
         if not self.normalizer:
             self.init_normalization()
         return self.normalizer.sub(
-            lambda m: self.normelization[m.string[m.start():m.end()]], text)
+            lambda m: self.normelization[m.string[m.start() : m.end()]], text
+        )
 
     def init_normalization(self):
         if not self.normalizer:
-            self.normalizer = re.compile('({})'.format(
-                '|'.join(map(re.escape, self.normelization.keys()))))
+            self.normalizer = re.compile(
+                "({})".format("|".join(map(re.escape, self.normelization.keys())))
+            )
 
 
 punc = Punctuation()
