@@ -16,7 +16,7 @@ class Regex(
     """
     :param str name: regex name
     :param str pattern: Python regex
-    :param str repl: replaement
+    :param str repl: replacement
 
     regex pattern
     """
@@ -73,7 +73,7 @@ class Token(
 #: Only support ASCII chars.
 URL = Regex(
     "URL",
-    r"https?:\/\/[!-~]+",
+    r"https?:\/\/[!-~]+|[a-zA-Z0-9_.+-]+\.[a-zA-Z0-9-]+$",
     re.I,
     "<URL>",
 )
