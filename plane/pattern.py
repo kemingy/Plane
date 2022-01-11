@@ -73,7 +73,7 @@ class Token(
 #: Only support ASCII chars.
 URL = Regex(
     "URL",
-    r"https?:\/\/[!-~]+|[a-zA-Z0-9_.+-]+\.[a-zA-Z0-9-]+$",
+    r"https?:\/\/[!-~]+",
     re.I,
     "<URL>",
 )
