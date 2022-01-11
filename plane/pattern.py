@@ -16,7 +16,7 @@ class Regex(
     """
     :param str name: regex name
     :param str pattern: Python regex
-    :param str repl: replaement
+    :param str repl: replacement
 
     regex pattern
     """
