@@ -82,7 +82,7 @@ replace(text, EMAIL, '')
 ```python
 # create new pattern
 from plane import build_new_regex
-custom_regex = build_new_regex('my_regex', r'(\d{4})', '<my-replacement-tag>')
+custom_regex = build_new_regex('my_regex', regex=r'(\d{4})', repl='<my-replacement-tag>')
 ```
 
 Also, you can build new pattern from default patterns.
@@ -91,7 +91,7 @@ Also, you can build new pattern from default patterns.
 
 ```python
 from plane import extract, build_new_regex, CHINESE_WORDS
-ASCII = build_new_regex('ascii', r'[a-zA-Z0-9]+', ' ')
+ASCII = build_new_regex('ascii', regex=r'[a-zA-Z0-9]+', repl=' ')
 WORDS = ASCII + CHINESE_WORDS
 print(WORDS)
 
