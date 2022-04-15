@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regex patterns &mdash; plane  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Function details" href="details.html" />
+    <link rel="prev" title="Welcome to Plane’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> plane
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Regex patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="details.html">Function details</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">plane</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Regex patterns</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/patterns.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-plane.pattern">
+<span id="regex-patterns"></span><h1>Regex patterns<a class="headerlink" href="#module-plane.pattern" title="Permalink to this headline"></a></h1>
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.ASCII_WORD">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">ASCII_WORD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='ASCII_word',</span> <span class="pre">pattern=&quot;[&lt;$#&amp;]?[a-zA-Z0-9_.-]*\\'?[a-zA-Z0-9]+[%&gt;]?&quot;,</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.ASCII_WORD" title="Permalink to this definition"></a></dt>
+<dd><p>English words, numbers, like ‘hash’, ‘3.14’, ‘$100’, ‘&lt;EOS&gt;’
+, ‘99.9%’</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.BraSCII">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">BraSCII</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='BraSCII',</span> <span class="pre">pattern='[!-/:-~\\U000000C0-\\U000000FF]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.BraSCII" title="Permalink to this definition"></a></dt>
+<dd><p>BraSCII <a class="reference external" href="https://en.wikipedia.org/wiki/BraSCII">https://en.wikipedia.org/wiki/BraSCII</a></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.CHINESE">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">CHINESE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='Chinese',</span> <span class="pre">pattern='[\\U00004E00-\\U00009FFF\\U00003400-\\U00004DBF\\U00020000-\\U0002A6DF\\U0002A700-\\U0002B73F\\U0002B740-\\U0002B81F\\U0002B820-\\U0002CEAF\\U0002CEB0-\\U0002EBEF\\U00003000-\\U0000303F\\U0000FE30-\\U0000FE4F\\U0000FF00-\\U0000FFEF]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.CHINESE" title="Permalink to this definition"></a></dt>
+<dd><p>All Chinese words includes most punctuations.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.CHINESE_WORDS">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">CHINESE_WORDS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='Chinese_words',</span> <span class="pre">pattern='[\\U00004E00-\\U00009FFF\\U00003400-\\U00004DBF\\U00020000-\\U0002A6DF\\U0002A700-\\U0002B73F\\U0002B740-\\U0002B81F\\U0002B820-\\U0002CEAF\\U0002CEB0-\\U0002EBEF]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.CHINESE_WORDS" title="Permalink to this definition"></a></dt>
+<dd><p>All Chinese words without punctuations.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.CJK">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">CJK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='CJK',</span> <span class="pre">pattern='[\\U00004E00-\\U00009FFF\\U00003400-\\U00004DBF\\U00020000-\\U0002A6DF\\U0002A700-\\U0002B73F\\U0002B740-\\U0002B81F\\U0002B820-\\U0002CEAF\\U0002CEB0-\\U0002EBEF\\U00002E80-\\U00002EFF\\U00002F00-\\U00002FDF\\U00002FF0-\\U00002FFF\\U00003000-\\U0000303F\\U000031C0-\\U000031EF\\U00003200-\\U000032FF\\U00003300-\\U000033FF\\U0000F900-\\U0000FAFF\\U0000FE30-\\U0000FE4F\\U0000FF00-\\U0000FFEF\\U0001F200-\\U0001F2FF\\U0002F800-\\U0002FA1F]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.CJK" title="Permalink to this definition"></a></dt>
+<dd><p>All CJK chars.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.EMAIL">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">EMAIL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='Email',</span> <span class="pre">pattern='[a-zA-Z0-9_.+-]+&#64;[a-zA-Z0-9-]+\\.[a-zA-Z0-9-]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='&lt;Email&gt;')</span></em><a class="headerlink" href="#plane.pattern.EMAIL" title="Permalink to this definition"></a></dt>
+<dd><p>[local-part]&#64;[domain].[top-level-domain]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.ENGLISH">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">ENGLISH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='English',</span> <span class="pre">pattern='[!-/:-~]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.ENGLISH" title="Permalink to this definition"></a></dt>
+<dd><p>English words, punctuations, numbers are not included</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.HTML">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">HTML</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='HTML',</span> <span class="pre">pattern='&lt;script.*?&gt;.*?&lt;/script&gt;|&lt;style.*?&gt;.*?&lt;/style&gt;|&lt;.*?&gt;',</span> <span class="pre">flag=re.DOTALL,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.HTML" title="Permalink to this definition"></a></dt>
+<dd><p>HTML tags includes ‘script’, ‘style’ and others.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.NUMBER">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">NUMBER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='Numbers',</span> <span class="pre">pattern='[0-9]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.NUMBER" title="Permalink to this definition"></a></dt>
+<dd><p>Numbers</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plane.pattern.Regex">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">Regex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/pattern.html#Regex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.pattern.Regex" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – regex name</p></li>
+<li><p><strong>pattern</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Python regex</p></li>
+<li><p><strong>repl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – replacement</p></li>
+</ul>
+</dd>
+</dl>
+<p>regex pattern</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.SPACE">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">SPACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='Space',</span> <span class="pre">pattern='\\s+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.SPACE" title="Permalink to this definition"></a></dt>
+<dd><p><code class="code docutils literal notranslate"><span class="pre">r(\s+)</span></code></p>
+<p>This can remove all extra spaces.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.TELEPHONE">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">TELEPHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='Telephone',</span> <span class="pre">pattern='\\d{3}[</span> <span class="pre">+.-]?\\d{4}[</span> <span class="pre">+.-]?\\d{4}',</span> <span class="pre">flag=0,</span> <span class="pre">repl='&lt;Telephone&gt;')</span></em><a class="headerlink" href="#plane.pattern.TELEPHONE" title="Permalink to this definition"></a></dt>
+<dd><p>Chinese telephone number format of 11 numbers. ( <cite>[xxx][xxxx][xxxx]</cite> )</p>
+<p>There can be space, <cite>+</cite>, <cite>.</cite>, <cite>-</cite> as delimiters. Such as
+<cite>155-5555-5555</cite></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.THAI">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">THAI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='Thai',</span> <span class="pre">pattern='[\\U00000E01-\\U00000E3A\\U00000E3F-\\U00000E5B]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.THAI" title="Permalink to this definition"></a></dt>
+<dd><p>Thai: <a class="reference external" href="https://en.wikipedia.org/wiki/Thai_(Unicode_block">https://en.wikipedia.org/wiki/Thai_(Unicode_block</a>) with punctuations</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plane.pattern.Token">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">Token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/pattern.html#Token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.pattern.Token" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – token name</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – matched text</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – matched text started index</p></li>
+<li><p><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – matched text ended index</p></li>
+</ul>
+</dd>
+</dl>
+<p>matched token</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.URL">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">URL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='URL',</span> <span class="pre">pattern='https?:\\/\\/[!-~]+',</span> <span class="pre">flag=re.IGNORECASE,</span> <span class="pre">repl='&lt;URL&gt;')</span></em><a class="headerlink" href="#plane.pattern.URL" title="Permalink to this definition"></a></dt>
+<dd><p>URLs should begin with <code class="code docutils literal notranslate"><span class="pre">http</span></code> or <code class="code docutils literal notranslate"><span class="pre">https</span></code>.</p>
+<p>Only support ASCII chars.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="plane.pattern.VIETNAMESE">
+<span class="sig-prename descclassname"><span class="pre">plane.pattern.</span></span><span class="sig-name descname"><span class="pre">VIETNAMESE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Regex(name='Vietnamese',</span> <span class="pre">pattern='[\\U00000021-\\U00000080\\U000000C0-\\U000000C3\\U000000C8-\\U000000CA\\U000000CC-\\U000000CD\\U000000D2-\\U000000D5\\U000000D9-\\U000000DA\\U000000E0-\\U000000E3\\U000000E8-\\U000000EA\\U000000EC-\\U000000ED\\U000000F2-\\U000000F5\\U000000F9-\\U000000FA\\U00000102-\\U00000103\\U00000110-\\U00000111\\U00000128-\\U00000129\\U00000168-\\U00000169\\U000001A0-\\U000001B0\\U00001EA0-\\U00001EF9\\U000002C6-\\U00000323\\U000000D0\\U000000DD\\U000000FD]+',</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></em><a class="headerlink" href="#plane.pattern.VIETNAMESE" title="Permalink to this definition"></a></dt>
+<dd><p>Vietnamese with punctuations</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/37579692/unicode-range-for-vietnamese">https://stackoverflow.com/questions/37579692/unicode-range-for-vietnamese</a></p></li>
+<li><p><a class="reference external" href="http://vietunicode.sourceforge.net/charset/">http://vietunicode.sourceforge.net/charset/</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Plane’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="details.html" class="btn btn-neutral float-right" title="Function details" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, keming.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Function details &mdash; plane  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Regex patterns" href="patterns.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> plane
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">Regex patterns</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Function details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-plane.func">default function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-plane.plane">Chain function call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-plane.pipeline">Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-plane.punctuation">punctuation</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">plane</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Function details</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/details.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="function-details">
+<h1>Function details<a class="headerlink" href="#function-details" title="Permalink to this headline"></a></h1>
+<section id="module-plane.func">
+<span id="default-function"></span><h2>default function<a class="headerlink" href="#module-plane.func" title="Permalink to this headline"></a></h2>
+<p>Basic <code class="xref py py-meth docutils literal notranslate"><span class="pre">match()</span></code>, <a class="reference internal" href="#plane.func.extract" title="plane.func.extract"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extract()</span></code></a>, <a class="reference internal" href="#plane.func.segment" title="plane.func.segment"><code class="xref py py-meth docutils literal notranslate"><span class="pre">segment()</span></code></a> function.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="plane.func.build_new_regex">
+<span class="sig-prename descclassname"><span class="pre">plane.func.</span></span><span class="sig-name descname"><span class="pre">build_new_regex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/func.html#build_new_regex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.func.build_new_regex" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – regex pattern name</p></li>
+<li><p><strong>regex</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – regex</p></li>
+<li><p><strong>repl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – replacement</p></li>
+</ul>
+</dd>
+</dl>
+<p>build regex pattern, space <code class="code docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code> in name will be replaced by
+<code class="code docutils literal notranslate"><span class="pre">'_'</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plane.func.extract">
+<span class="sig-prename descclassname"><span class="pre">plane.func.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/func.html#extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.func.extract" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – text</p></li>
+<li><p><strong>pattern</strong> (<a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><em>Regex</em></a>) – <a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><code class="xref py py-class docutils literal notranslate"><span class="pre">plane.pattern.Regex</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Extract tokens with regex pattern.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plane.func.replace">
+<span class="sig-prename descclassname"><span class="pre">plane.func.</span></span><span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/func.html#replace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.func.replace" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – text</p></li>
+<li><p><strong>pattern</strong> (<a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><em>Regex</em></a>) – <a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><code class="xref py py-class docutils literal notranslate"><span class="pre">plane.pattern.Regex</span></code></a></p></li>
+<li><p><strong>repl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – replacement for pattern, if setted, default <cite>repl</cite>     will be overwritten</p></li>
+</ul>
+</dd>
+</dl>
+<p>Replace matched tokens with <cite>repl</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plane.func.segment">
+<span class="sig-prename descclassname"><span class="pre">plane.func.</span></span><span class="sig-name descname"><span class="pre">segment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Regex(name='ASCII_word',</span> <span class="pre">pattern=&quot;[&lt;$#&amp;]?[a-zA-Z0-9_.-]*\\'?[a-zA-Z0-9]+[%&gt;]?&quot;,</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/func.html#segment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.func.segment" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – text</p></li>
+<li><p><strong>pattern</strong> (<a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><em>Regex</em></a>) – <a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><code class="xref py py-class docutils literal notranslate"><span class="pre">plane.pattern.Regex</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Segment sentence.
+Chinese words will be split into char and English words will be keeped.</p>
+</dd></dl>
+
+</section>
+<section id="module-plane.plane">
+<span id="chain-function-call"></span><h2>Chain function call<a class="headerlink" href="#module-plane.plane" title="Permalink to this headline"></a></h2>
+<p>Plane class, support chain function calls.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="plane.plane.Plane">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">plane.plane.</span></span><span class="sig-name descname"><span class="pre">Plane</span></span><a class="reference internal" href="_modules/plane/plane.html#Plane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.plane.Plane" title="Permalink to this definition"></a></dt>
+<dd><p>Init <code class="xref py py-class docutils literal notranslate"><span class="pre">Plane.text</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">Plane.values</span></code> when the instance is
+created.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.plane.Plane.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/plane.html#Plane.extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.plane.Plane.extract" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>regex</strong> (<a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><em>Regex</em></a>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">Regex</span></code></p></li>
+<li><p><strong>result</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if <cite>True</cite>, return result directly</p></li>
+</ul>
+</dd>
+</dl>
+<p>Extract tokens, results is saved in <code class="xref py py-class docutils literal notranslate"><span class="pre">Plane.values</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.plane.Plane.normalize_punctuation">
+<span class="sig-name descname"><span class="pre">normalize_punctuation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">punc=&lt;plane.punctuation.Punctuation</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/plane.html#Plane.normalize_punctuation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.plane.Plane.normalize_punctuation" title="Permalink to this definition"></a></dt>
+<dd><p>normalize punctuations to English punctuations</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.plane.Plane.remove_punctuation">
+<span class="sig-name descname"><span class="pre">remove_punctuation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repl='</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">punc=&lt;plane.punctuation.Punctuation</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/plane.html#Plane.remove_punctuation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.plane.Plane.remove_punctuation" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>repl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – replacement for regex, if setted, default value will         be overwritten</p>
+</dd>
+</dl>
+<p>remove all punctuations</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.plane.Plane.replace">
+<span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/plane.html#Plane.replace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.plane.Plane.replace" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>regex</strong> (<a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><em>Regex</em></a>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">Regex</span></code></p></li>
+<li><p><strong>repl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – replacement for regex, if setted, default value will         be overwritten</p></li>
+<li><p><strong>result</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – if <cite>True</cite>, return result directly</p></li>
+</ul>
+</dd>
+</dl>
+<p>Replace matched <code class="xref py py-class docutils literal notranslate"><span class="pre">regex</span></code> patterns with <code class="xref py py-class docutils literal notranslate"><span class="pre">repl</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.plane.Plane.segment">
+<span class="sig-name descname"><span class="pre">segment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Regex(name='ASCII_word',</span> <span class="pre">pattern=&quot;[&lt;$#&amp;]?[a-zA-Z0-9_.-]*\\'?[a-zA-Z0-9]+[%&gt;]?&quot;,</span> <span class="pre">flag=0,</span> <span class="pre">repl='</span> <span class="pre">')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/plane.html#Plane.segment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.plane.Plane.segment" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>regex</strong> (<a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><em>Regex</em></a>) – default regex is <cite>ASCII_WORD</cite>, this will keep all         english words complete</p>
+</dd>
+</dl>
+<p>Segment sentence.
+Chinese words will be split into char and English words will be keeped.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.plane.Plane.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/plane.html#Plane.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.plane.Plane.update" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – text string.</p>
+</dd>
+</dl>
+<p>Init <cite>Plane.text</cite> and <cite>Plane.values</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-plane.pipeline">
+<span id="pipeline"></span><h2>Pipeline<a class="headerlink" href="#module-plane.pipeline" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="plane.pipeline.Pipeline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">plane.pipeline.</span></span><span class="sig-name descname"><span class="pre">Pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">functions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/pipeline.html#Pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.pipeline.Pipeline" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize pipeline with functions.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pl</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="n">replace</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">EMAIL</span><span class="p">),</span>
+    <span class="n">segment</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">pl</span><span class="p">(</span><span class="s2">&quot;My email is abc@hello.com&quot;</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="s2">&quot;My&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;Email&gt;&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.pipeline.Pipeline.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/pipeline.html#Pipeline.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.pipeline.Pipeline.add" title="Permalink to this definition"></a></dt>
+<dd><p>Add functions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pl</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">replace</span><span class="p">,</span> <span class="n">EMAIL</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">pl</span><span class="p">(</span><span class="s2">&quot;My email is abc@hello.com&quot;</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="s2">&quot;My&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;Email&gt;&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-plane.punctuation">
+<span id="punctuation"></span><h2>punctuation<a class="headerlink" href="#module-plane.punctuation" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="plane.punctuation.Punctuation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">plane.punctuation.</span></span><span class="sig-name descname"><span class="pre">Punctuation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">normalization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/punctuation.html#Punctuation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.punctuation.Punctuation" title="Permalink to this definition"></a></dt>
+<dd><p>All the punctuations in Unicode.</p>
+<p>Abbr. Description</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pc</span> <span class="o">-</span> <span class="n">Punctuation</span><span class="p">,</span> <span class="n">Connector</span>
+<span class="n">Pd</span> <span class="o">-</span> <span class="n">Punctuation</span><span class="p">,</span> <span class="n">Dash</span>
+<span class="n">Ps</span> <span class="o">-</span> <span class="n">Punctuation</span><span class="p">,</span> <span class="n">Open</span>
+<span class="n">Pe</span> <span class="o">-</span> <span class="n">Punctuation</span><span class="p">,</span> <span class="n">Close</span>
+<span class="n">Pi</span> <span class="o">-</span> <span class="n">Punctuation</span><span class="p">,</span> <span class="n">Initial</span> <span class="n">quote</span> <span class="p">(</span><span class="n">may</span> <span class="n">behave</span> <span class="n">like</span> <span class="n">Ps</span> <span class="ow">or</span> <span class="n">Pe</span><span class="p">)</span>
+<span class="n">Pf</span> <span class="o">-</span> <span class="n">Punctuation</span><span class="p">,</span> <span class="n">Final</span> <span class="n">quote</span> <span class="p">(</span><span class="n">may</span> <span class="n">behave</span> <span class="n">like</span> <span class="n">Ps</span> <span class="ow">or</span> <span class="n">Pe</span><span class="p">)</span>
+<span class="n">Po</span> <span class="o">-</span> <span class="n">Punctuation</span><span class="p">,</span> <span class="n">Other</span>
+</pre></div>
+</div>
+<p>Some chars are not included in punctuations. Such as: <cite>+</cite>, <cite>^</cite>, <cite>$</cite>, <cite>~</cite>.</p>
+<p>You can use <code class="xref py py-class docutils literal notranslate"><span class="pre">Plane.pattern</span></code> to process these chars.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>normalization</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><em>dict</em></a>) – punctuation normalization map</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.punctuation.Punctuation.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/punctuation.html#Punctuation.normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.punctuation.Punctuation.normalize" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – input text</p>
+</dd>
+</dl>
+<p>Convert punctuations from other languages to English punctuations.
+Not every punctuation is included.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/moses-smt/mosesdecoder/blob/master/scripts">https://github.com/moses-smt/mosesdecoder/blob/master/scripts</a></p></li>
+<li><p><a class="reference external" href="http://xahlee.info/comp/unicode_punctuation_symbols.html">http://xahlee.info/comp/unicode_punctuation_symbols.html</a></p></li>
+<li><p><a class="reference external" href="https://www.compart.com/en/unicode/category/Po">https://www.compart.com/en/unicode/category/Po</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plane.punctuation.Punctuation.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/plane/punctuation.html#Punctuation.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plane.punctuation.Punctuation.remove" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – input text</p>
+</dd>
+</dl>
+<p>Remove all punctuations.</p>
+<p>This methods use <code class="xref py py-class docutils literal notranslate"><span class="pre">unicodedata</span></code>
+(<a class="reference external" href="https://docs.python.org/3.6/library/unicodedata.html">https://docs.python.org/3.6/library/unicodedata.html</a>) to get all
+the punctuations.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="patterns.html" class="btn btn-neutral float-left" title="Regex patterns" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, keming.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

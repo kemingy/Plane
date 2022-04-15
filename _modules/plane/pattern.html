@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>plane.pattern &mdash; plane  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> plane
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../patterns.html">Regex patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../details.html">Function details</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">plane</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>plane.pattern</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for plane.pattern</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+
+<div class="viewcode-block" id="Regex"><a class="viewcode-back" href="../../patterns.html#plane.pattern.Regex">[docs]</a><span class="k">class</span> <span class="nc">Regex</span><span class="p">(</span>
+    <span class="n">namedtuple</span><span class="p">(</span>
+        <span class="s2">&quot;Regex&quot;</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pattern&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;flag&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;repl&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param str name: regex name</span>
+<span class="sd">    :param str pattern: Python regex</span>
+<span class="sd">    :param str repl: replacement</span>
+
+<span class="sd">    regex pattern</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Regex</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">repl</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method should only be used for language range.</span>
+
+<span class="sd">        :param :class:`.Regex` other: another Regex instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Regex</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Regex</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">|</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">pattern</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">flag</span> <span class="o">|</span> <span class="n">other</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">repl</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">repl</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">repl</span>
+                <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">repl</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">repl</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Trait `sum`&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Token"><a class="viewcode-back" href="../../patterns.html#plane.pattern.Token">[docs]</a><span class="k">class</span> <span class="nc">Token</span><span class="p">(</span>
+    <span class="n">namedtuple</span><span class="p">(</span>
+        <span class="s2">&quot;Token&quot;</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;end&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param str name: token name</span>
+<span class="sd">    :param str value: matched text</span>
+<span class="sd">    :param int start: matched text started index</span>
+<span class="sd">    :param int end: matched text ended index</span>
+
+<span class="sd">    matched token</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="c1">#: URLs should begin with :code:`http` or :code:`https`.</span>
+<span class="c1">#:</span>
+<span class="c1">#: Only support ASCII chars.</span>
+<span class="n">URL</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;URL&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;https?:\/\/[!-~]+&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;URL&gt;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: [local-part]@[domain].[top-level-domain]</span>
+<span class="n">EMAIL</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;Email&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+&quot;</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;Email&gt;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: Chinese telephone number format of 11 numbers. ( `[xxx][xxxx][xxxx]` )</span>
+<span class="c1">#:</span>
+<span class="c1">#: There can be space, `+`, `.`, `-` as delimiters. Such as</span>
+<span class="c1">#: `155-5555-5555`</span>
+<span class="n">TELEPHONE</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;Telephone&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;\d</span><span class="si">{3}</span><span class="s2">[ +.-]?\d</span><span class="si">{4}</span><span class="s2">[ +.-]?\d</span><span class="si">{4}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;&lt;Telephone&gt;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: :code:`r(\s+)`</span>
+<span class="c1">#:</span>
+<span class="c1">#: This can remove all extra spaces.</span>
+<span class="n">SPACE</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;Space&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: HTML tags includes &#39;script&#39;, &#39;style&#39; and others.</span>
+<span class="n">HTML</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;HTML&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;&lt;script.*?&gt;.*?&lt;/script&gt;|&lt;style.*?&gt;.*?&lt;/style&gt;|&lt;.*?&gt;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: English words, numbers, like &#39;hash&#39;, &#39;3.14&#39;, &#39;$100&#39;, &#39;&lt;EOS&gt;&#39;</span>
+<span class="c1">#: , &#39;99.9%&#39;</span>
+<span class="n">ASCII_WORD</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;ASCII_word&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[&lt;$#&amp;]?[a-zA-Z0-9_.-]*\&#39;?[a-zA-Z0-9]+[%&gt;]?&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: English words, punctuations, numbers are not included</span>
+<span class="n">ENGLISH</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;English&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[!-/:-~]+&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: Numbers</span>
+<span class="n">NUMBER</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;Numbers&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[0-9]+&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: BraSCII https://en.wikipedia.org/wiki/BraSCII</span>
+<span class="n">BraSCII</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;BraSCII&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[!-/:-~\U</span><span class="si">{:0&gt;8X}</span><span class="s2">-\U</span><span class="si">{:0&gt;8X}</span><span class="s2">]+&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mh">0x00C0</span><span class="p">,</span> <span class="mh">0x00FF</span><span class="p">),</span>
+<span class="p">)</span>
+
+
+<span class="c1">#: Vietnamese with punctuations</span>
+<span class="c1">#:</span>
+<span class="c1">#: - https://stackoverflow.com/questions/37579692/unicode-range-for-vietnamese</span>
+<span class="c1">#: - http://vietunicode.sourceforge.net/charset/</span>
+<span class="n">VIETNAMESE</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;Vietnamese&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s2">&quot;\U</span><span class="si">{:0&gt;8X}</span><span class="s2">-\U</span><span class="si">{:0&gt;8X}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="p">(</span><span class="mh">0x0021</span><span class="p">,</span> <span class="mh">0x0080</span><span class="p">),</span>  <span class="c1"># a-zA-Z0-9 and some punctuations</span>
+                <span class="p">(</span><span class="mh">0x00C0</span><span class="p">,</span> <span class="mh">0x00C3</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00C8</span><span class="p">,</span> <span class="mh">0x00CA</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00CC</span><span class="p">,</span> <span class="mh">0x00CD</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00D2</span><span class="p">,</span> <span class="mh">0x00D5</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00D9</span><span class="p">,</span> <span class="mh">0x00DA</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00E0</span><span class="p">,</span> <span class="mh">0x00E3</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00E8</span><span class="p">,</span> <span class="mh">0x00EA</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00EC</span><span class="p">,</span> <span class="mh">0x00ED</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00F2</span><span class="p">,</span> <span class="mh">0x00F5</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x00F9</span><span class="p">,</span> <span class="mh">0x00FA</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x0102</span><span class="p">,</span> <span class="mh">0x0103</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x0110</span><span class="p">,</span> <span class="mh">0x0111</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x0128</span><span class="p">,</span> <span class="mh">0x0129</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x0168</span><span class="p">,</span> <span class="mh">0x0169</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x01A0</span><span class="p">,</span> <span class="mh">0x01B0</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x1EA0</span><span class="p">,</span> <span class="mh">0x1EF9</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x02C6</span><span class="p">,</span> <span class="mh">0x0323</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">r</span><span class="s2">&quot;\U</span><span class="si">{:0&gt;8X}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mh">0x00D0</span><span class="p">,</span> <span class="mh">0x00DD</span><span class="p">,</span> <span class="mh">0x00FD</span><span class="p">)])</span>
+    <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;]+&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: Thai: https://en.wikipedia.org/wiki/Thai_(Unicode_block) with punctuations</span>
+<span class="n">THAI</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;Thai&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s2">&quot;\U</span><span class="si">{:0&gt;8X}</span><span class="s2">-\U</span><span class="si">{:0&gt;8X}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="p">(</span><span class="mh">0x0E01</span><span class="p">,</span> <span class="mh">0x0E3A</span><span class="p">),</span>
+                <span class="p">(</span><span class="mh">0x0E3F</span><span class="p">,</span> <span class="mh">0x0E5B</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;]+&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: All Chinese words without punctuations.</span>
+<span class="n">CHINESE_WORDS</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;Chinese_words&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s2">&quot;\U</span><span class="si">{:0&gt;8X}</span><span class="s2">-\U</span><span class="si">{:0&gt;8X}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="p">(</span><span class="mh">0x4E00</span><span class="p">,</span> <span class="mh">0x9FFF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs</span>
+                <span class="p">(</span><span class="mh">0x3400</span><span class="p">,</span> <span class="mh">0x4DBF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension A</span>
+                <span class="p">(</span><span class="mh">0x20000</span><span class="p">,</span> <span class="mh">0x2A6DF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension B</span>
+                <span class="p">(</span><span class="mh">0x2A700</span><span class="p">,</span> <span class="mh">0x2B73F</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension C</span>
+                <span class="p">(</span><span class="mh">0x2B740</span><span class="p">,</span> <span class="mh">0x2B81F</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension D</span>
+                <span class="p">(</span><span class="mh">0x2B820</span><span class="p">,</span> <span class="mh">0x2CEAF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension E</span>
+                <span class="p">(</span><span class="mh">0x2CEB0</span><span class="p">,</span> <span class="mh">0x2EBEF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension F</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;]+&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: All Chinese words includes most punctuations.</span>
+<span class="n">CHINESE</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;Chinese&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s2">&quot;\U</span><span class="si">{:0&gt;8X}</span><span class="s2">-\U</span><span class="si">{:0&gt;8X}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="p">(</span><span class="mh">0x4E00</span><span class="p">,</span> <span class="mh">0x9FFF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs</span>
+                <span class="p">(</span><span class="mh">0x3400</span><span class="p">,</span> <span class="mh">0x4DBF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension A</span>
+                <span class="p">(</span><span class="mh">0x20000</span><span class="p">,</span> <span class="mh">0x2A6DF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension B</span>
+                <span class="p">(</span><span class="mh">0x2A700</span><span class="p">,</span> <span class="mh">0x2B73F</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension C</span>
+                <span class="p">(</span><span class="mh">0x2B740</span><span class="p">,</span> <span class="mh">0x2B81F</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension D</span>
+                <span class="p">(</span><span class="mh">0x2B820</span><span class="p">,</span> <span class="mh">0x2CEAF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension E</span>
+                <span class="p">(</span><span class="mh">0x2CEB0</span><span class="p">,</span> <span class="mh">0x2EBEF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension F</span>
+                <span class="p">(</span><span class="mh">0x3000</span><span class="p">,</span> <span class="mh">0x303F</span><span class="p">),</span>  <span class="c1"># CJK Symbols and Punctuation</span>
+                <span class="p">(</span><span class="mh">0xFE30</span><span class="p">,</span> <span class="mh">0xFE4F</span><span class="p">),</span>  <span class="c1"># CJK Compatibility Forms</span>
+                <span class="p">(</span><span class="mh">0xFF00</span><span class="p">,</span> <span class="mh">0xFFEF</span><span class="p">),</span>  <span class="c1"># Halfwidth and Fullwidth Forms</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;]+&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#: All CJK chars.</span>
+<span class="n">CJK</span> <span class="o">=</span> <span class="n">Regex</span><span class="p">(</span>
+    <span class="s2">&quot;CJK&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;[&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">r</span><span class="s2">&quot;\U</span><span class="si">{:0&gt;8X}</span><span class="s2">-\U</span><span class="si">{:0&gt;8X}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="p">(</span><span class="mh">0x4E00</span><span class="p">,</span> <span class="mh">0x9FFF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs</span>
+                <span class="p">(</span><span class="mh">0x3400</span><span class="p">,</span> <span class="mh">0x4DBF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension A</span>
+                <span class="p">(</span><span class="mh">0x20000</span><span class="p">,</span> <span class="mh">0x2A6DF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension B</span>
+                <span class="p">(</span><span class="mh">0x2A700</span><span class="p">,</span> <span class="mh">0x2B73F</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension C</span>
+                <span class="p">(</span><span class="mh">0x2B740</span><span class="p">,</span> <span class="mh">0x2B81F</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension D</span>
+                <span class="p">(</span><span class="mh">0x2B820</span><span class="p">,</span> <span class="mh">0x2CEAF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension E</span>
+                <span class="p">(</span><span class="mh">0x2CEB0</span><span class="p">,</span> <span class="mh">0x2EBEF</span><span class="p">),</span>  <span class="c1"># CJK Unified Ideographs Extension F</span>
+                <span class="p">(</span><span class="mh">0x2E80</span><span class="p">,</span> <span class="mh">0x2EFF</span><span class="p">),</span>  <span class="c1"># CJK Radicals Supplement</span>
+                <span class="p">(</span><span class="mh">0x2F00</span><span class="p">,</span> <span class="mh">0x2FDF</span><span class="p">),</span>  <span class="c1"># Kangxi Radicals</span>
+                <span class="p">(</span><span class="mh">0x2FF0</span><span class="p">,</span> <span class="mh">0x2FFF</span><span class="p">),</span>  <span class="c1"># Ideographic Description Characters</span>
+                <span class="p">(</span><span class="mh">0x3000</span><span class="p">,</span> <span class="mh">0x303F</span><span class="p">),</span>  <span class="c1"># CJK Symbols and Punctuation</span>
+                <span class="p">(</span><span class="mh">0x31C0</span><span class="p">,</span> <span class="mh">0x31EF</span><span class="p">),</span>  <span class="c1"># CJK Strokes</span>
+                <span class="p">(</span><span class="mh">0x3200</span><span class="p">,</span> <span class="mh">0x32FF</span><span class="p">),</span>  <span class="c1"># Enclosed CJK Letters and Months</span>
+                <span class="p">(</span><span class="mh">0x3300</span><span class="p">,</span> <span class="mh">0x33FF</span><span class="p">),</span>  <span class="c1"># CJK Compatibility</span>
+                <span class="p">(</span><span class="mh">0xF900</span><span class="p">,</span> <span class="mh">0xFAFF</span><span class="p">),</span>  <span class="c1"># CJK Compatibility Ideographs</span>
+                <span class="p">(</span><span class="mh">0xFE30</span><span class="p">,</span> <span class="mh">0xFE4F</span><span class="p">),</span>  <span class="c1"># CJK Compatibility Forms</span>
+                <span class="p">(</span><span class="mh">0xFF00</span><span class="p">,</span> <span class="mh">0xFFEF</span><span class="p">),</span>  <span class="c1"># Halfwidth and Fullwidth Forms</span>
+                <span class="p">(</span><span class="mh">0x1F200</span><span class="p">,</span> <span class="mh">0x1F2FF</span><span class="p">),</span>  <span class="c1"># Enclosed Ideographic Supplement</span>
+                <span class="p">(</span><span class="mh">0x2F800</span><span class="p">,</span> <span class="mh">0x2FA1F</span><span class="p">),</span>  <span class="c1"># CJK Compatibility Ideographs Supplement</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;]+&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">DEFAULT_PATTERNS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">HTML</span><span class="p">,</span>
+    <span class="n">EMAIL</span><span class="p">,</span>
+    <span class="n">SPACE</span><span class="p">,</span>
+    <span class="n">TELEPHONE</span><span class="p">,</span>
+    <span class="n">URL</span><span class="p">,</span>
+    <span class="n">ASCII_WORD</span><span class="p">,</span>
+    <span class="n">CHINESE</span><span class="p">,</span>
+    <span class="n">CJK</span><span class="p">,</span>
+    <span class="n">ENGLISH</span><span class="p">,</span>
+    <span class="n">BraSCII</span><span class="p">,</span>
+    <span class="n">NUMBER</span><span class="p">,</span>
+    <span class="n">THAI</span><span class="p">,</span>
+    <span class="n">VIETNAMESE</span><span class="p">,</span>
+    <span class="n">CHINESE_WORDS</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, keming.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

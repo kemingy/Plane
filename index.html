@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Plane’s documentation! &mdash; plane  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Regex patterns" href="patterns.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> plane
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">Regex patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="details.html">Function details</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">plane</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Welcome to Plane’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-plane-s-documentation">
+<h1>Welcome to Plane’s documentation!<a class="headerlink" href="#welcome-to-plane-s-documentation" title="Permalink to this headline"></a></h1>
+<p><cite>Plane</cite> is a tool to remove the useless part of the sentence, just like the carpenter shapes the wood.</p>
+<figure class="align-default">
+<img alt="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kanna2.gif" src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kanna2.gif" />
+</figure>
+<p>This package already offers some useful regex patterns, such as HTML tags, URL, Email. You can also write your own regex pattern and concatenate with existing patterns.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>build-in regex patterns: <a class="reference internal" href="patterns.html#plane.pattern.Regex" title="plane.pattern.Regex"><code class="xref py py-class docutils literal notranslate"><span class="pre">plane.pattern.Regex</span></code></a></p></li>
+<li><p>custom regex patterns</p></li>
+<li><p>pattern combination</p></li>
+<li><p>extract, replace patterns</p></li>
+<li><p>segment sentence</p></li>
+<li><p>chain function calls: <a class="reference internal" href="details.html#plane.plane.Plane" title="plane.plane.Plane"><code class="xref py py-class docutils literal notranslate"><span class="pre">plane.plane.Plane</span></code></a></p></li>
+<li><p>pipeline: <a class="reference internal" href="details.html#plane.pipeline.Pipeline" title="plane.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">plane.pipeline.Pipeline</span></code></a></p></li>
+</ul>
+</section>
+<section id="why-we-need-this">
+<h2>Why we need this?<a class="headerlink" href="#why-we-need-this" title="Permalink to this headline"></a></h2>
+<p>In NLP(Natural language processing) task, cleaning text data may be one of the most boring things. <cite>Plane</cite> is built for this.</p>
+<ul class="simple">
+<li><p>extract content from web page source</p></li>
+<li><p>detect urls, emails, telephone numbers</p></li>
+<li><p>split sentence composed of Chinese and English</p></li>
+<li><p>remove all punctuations to get pure text</p></li>
+</ul>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>Only support Python3.</p>
+<section id="extract-and-replace">
+<h3><cite>extract</cite> and <cite>replace</cite><a class="headerlink" href="#extract-and-replace" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plane</span> <span class="kn">import</span> <span class="n">EMAIL</span><span class="p">,</span> <span class="n">extract</span><span class="p">,</span> <span class="n">replace</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;fake@no.com &amp; fakefake@nothing.com&#39;</span>
+
+<span class="n">emails</span> <span class="o">=</span> <span class="n">extract</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">EMAIL</span><span class="p">)</span> <span class="c1"># this return a generator object</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">emails</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Token</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;fake@no.com&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Token</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;fakefake@nothing.com&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">34</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">EMAIL</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Regex</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s1">&#39;([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+</span><span class="se">\\</span><span class="s1">.[a-zA-Z0-9-]+)&#39;</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s1">&#39;&lt;Email&gt;&#39;</span><span class="p">)</span>
+
+<span class="n">replace</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">EMAIL</span><span class="p">)</span> <span class="c1"># replace(text, Regex, repl), if repl is not provided, Regex.repl will be used</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;&lt;Email&gt; &amp; &lt;Email&gt;&#39;</span>
+
+<span class="n">replace</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">EMAIL</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39; &amp; &#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="pattern-combination">
+<h3>Pattern combination<a class="headerlink" href="#pattern-combination" title="Permalink to this headline"></a></h3>
+<p>You can create your own pattern with <a class="reference internal" href="details.html#plane.func.build_new_regex" title="plane.func.build_new_regex"><code class="xref py py-func docutils literal notranslate"><span class="pre">plane.func.build_new_regex()</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plane</span> <span class="kn">import</span> <span class="n">extract</span><span class="p">,</span> <span class="n">build_new_regex</span><span class="p">,</span> <span class="n">CHINESE_WORDS</span>
+<span class="n">ASCII</span> <span class="o">=</span> <span class="n">build_new_regex</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;[a-zA-Z0-9]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">WORDS</span> <span class="o">=</span> <span class="n">ASCII</span> <span class="o">+</span> <span class="n">CHINESE_WORDS</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">WORDS</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;</span> <span class="n">Regex</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ascii_Chinese_words&#39;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s1">&#39;[a-zA-Z0-9]+|[</span><span class="se">\\</span><span class="s1">U00004E00-</span><span class="se">\\</span><span class="s1">U00009FFF</span><span class="se">\\</span><span class="s1">U00003400-</span><span class="se">\\</span><span class="s1">U00004DBF</span><span class="se">\\</span><span class="s1">U00020000-</span><span class="se">\\</span><span class="s1">U0002A6DF</span><span class="se">\\</span><span class="s1">U0002A700-</span><span class="se">\\</span><span class="s1">U0002B73F</span><span class="se">\\</span><span class="s1">U0002B740-</span><span class="se">\\</span><span class="s1">U0002B81F</span><span class="se">\\</span><span class="s1">U0002B820-</span><span class="se">\\</span><span class="s1">U0002CEAF</span><span class="se">\\</span><span class="s1">U0002CEB0-</span><span class="se">\\</span><span class="s1">U0002EBEF]+&#39;</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;自然语言处理太难了！who can help me? (╯▔🔺▔)╯&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">extract</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">WORDS</span><span class="p">))]))</span>
+
+<span class="o">&gt;&gt;</span> <span class="s2">&quot;自然语言处理太难了 who can help me&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="segment">
+<h3><cite>segment</cite><a class="headerlink" href="#segment" title="Permalink to this headline"></a></h3>
+<p><cite>segment</cite> can be used to segment sentence, English and Numbers like ‘PS4’ will be keeped and others like Chinese ‘中文’ will be split to single word format <cite>[‘中’, ‘文’]</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plane</span> <span class="kn">import</span> <span class="n">segment</span>
+<span class="n">segment</span><span class="p">(</span><span class="s1">&#39;你看起来guaiguai的。&lt;EOS&gt;&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;你&#39;</span><span class="p">,</span> <span class="s1">&#39;看&#39;</span><span class="p">,</span> <span class="s1">&#39;起&#39;</span><span class="p">,</span> <span class="s1">&#39;来&#39;</span><span class="p">,</span> <span class="s1">&#39;guaiguai&#39;</span><span class="p">,</span> <span class="s1">&#39;的&#39;</span><span class="p">,</span> <span class="s1">&#39;。&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;EOS&gt;&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="replace-all-punctuations">
+<h3>replace all punctuations<a class="headerlink" href="#replace-all-punctuations" title="Permalink to this headline"></a></h3>
+<p><cite>punc.remove</cite> will replace all unicode punctuations to <cite>‘ ‘</cite> or something you send to this function as paramter <cite>repl</cite>. <cite>punc.normalize</cite> will normalize some Unicode punctuations to English punctuations.</p>
+<p><strong>Attention</strong>: ‘+’, ‘^’, ‘$’, ‘~’ and some chars are not punctuation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plane</span> <span class="kn">import</span> <span class="n">punc</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Hello world!&#39;</span>
+<span class="n">punc</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;Hello world &#39;</span>
+
+<span class="c1"># replace punctuation with special string</span>
+<span class="n">punc</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;&lt;P&gt;&#39;</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;Hello world&lt;P&gt;&#39;</span>
+
+<span class="c1"># normalize punctuations</span>
+<span class="n">punc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;你读过那本《边城》吗？什么编程？！人生苦短，我用 Python。&#39;</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;你读过那本(边城)吗?什么编程?!人生苦短,我用 Python.&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="chain-function-calls">
+<h3>chain function calls<a class="headerlink" href="#chain-function-calls" title="Permalink to this headline"></a></h3>
+<p><cite>Plane</cite> contains <cite>extract</cite>, <cite>replace</cite>, <cite>segment</cite> and <cite>punc.remove</cite>, <cite>punc.normalize</cite>, and these methods can be called in chain. Since <cite>segment</cite> returns list, it can only be called in the end of the chain.</p>
+<p><cite>Plane.text</cite> saves the result of processed text and <cite>Plane.values</cite> saves the result of extracted strings.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plane</span> <span class="kn">import</span> <span class="n">Plane</span>
+<span class="kn">from</span> <span class="nn">plane.pattern</span> <span class="kn">import</span> <span class="n">EMAIL</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;My email is my@email.com.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">EMAIL</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="c1"># update() will init Plane.text and Plane.values</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;My email is .&#39;</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;My email is my@email.com.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">EMAIL</span><span class="p">)</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;My&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Email&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;My email is my@email.com.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">EMAIL</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">Token</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;my@email.com&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">24</span><span class="p">)]</span>
+</pre></div>
+</div>
+</section>
+<section id="pipeline">
+<h3>pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline"></a></h3>
+<p>You can use <cite>Pipeline</cite> if you like.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plane</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">replace</span><span class="p">,</span> <span class="n">segment</span>
+<span class="kn">from</span> <span class="nn">plane.pattern</span> <span class="kn">import</span> <span class="n">URL</span>
+
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">replace</span><span class="p">,</span> <span class="n">URL</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
+<span class="n">pipe</span><span class="p">(</span><span class="s1">&#39;http://www.guokr.com is online.&#39;</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;online&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">Regex patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="details.html">Function details</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="details.html#module-plane.func">default function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="details.html#module-plane.plane">Chain function call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="details.html#module-plane.pipeline">Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="details.html#module-plane.punctuation">punctuation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="patterns.html" class="btn btn-neutral float-right" title="Regex patterns" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, keming.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
